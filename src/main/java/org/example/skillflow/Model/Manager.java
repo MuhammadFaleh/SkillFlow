@@ -40,6 +40,10 @@ public class Manager {
     @ManyToOne
     @JsonIgnore
     private Company company;
+
     @OneToMany(mappedBy = "manager")
     private Set<Employee> employee;
+
+    @OneToMany(mappedBy = "manager")
+    private AddSkillRequest addSkillRequest;
 }

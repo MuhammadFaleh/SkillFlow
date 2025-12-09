@@ -107,6 +107,10 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
+    public void assignSkill(){
+
+    }
+
     public EmployeeDTOOut convertToDTO(Employee employee){
         return new EmployeeDTOOut(employee.getId(),employee.getUsername(),employee.getFull_name(),
                 employee.getGender(),employee.getAge(),employee.getEmail(), employee.getCompany().getId());

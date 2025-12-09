@@ -39,6 +39,9 @@ public class Employee {
     private String password;
 //    @ManyToMany(mappedBy = "employee")
 //    private Project project;
+    @OneToMany(mappedBy = "employee")
+    private Set<AddSkillRequest> addSkillRequests;
+
     @ManyToOne
     @JsonIgnore
     private Manager manager;

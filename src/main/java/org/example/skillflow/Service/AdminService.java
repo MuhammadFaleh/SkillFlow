@@ -3,9 +3,9 @@ package org.example.skillflow.Service;
 import lombok.AllArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.Model.Admin;
-import org.example.skillflow.Model.Company_Request;
+import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Repository.AdminRepository;
-import org.example.skillflow.Repository.Company_RequestRepository;
+import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class AdminService {
 
     private final AdminRepository adminRepository;
-    private final Company_RequestRepository company_RequestRepository;
+    private final CompanyRequestRepository company_RequestRepository;
 
     public List<Admin> getAllAdmin(){
         return adminRepository.findAll();
@@ -44,13 +44,13 @@ public class AdminService {
         adminRepository.delete(admin);
     }
 
-    public List<Company_Request> getCompanyRequestByStatus(){
-        return company_RequestRepository.getCompany_RequestByStatus("pending");
+    public List<CompanyRequest> getCompanyRequestByStatus(){
+        return company_RequestRepository.getCompanyRequestByStatus("pending");
     }
 
 
     public void applyRequestCompany(Integer requestCompanyId){
-        Company_Request companyRequest = company_RequestRepository.findCompany_RequestById(requestCompanyId);
+        CompanyRequest companyRequest = company_RequestRepository.findCompanyRequestById(requestCompanyId);
 
         if (companyRequest == null){
             throw new APIException("request not found");

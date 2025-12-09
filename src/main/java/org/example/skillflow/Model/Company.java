@@ -57,6 +57,10 @@ public class Company {
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
+
+    @OneToMany(mappedBy = "company")
+    private Set<AddSkillRequest> addSkillRequests;
+
     private LocalDate created_at;
 
 }

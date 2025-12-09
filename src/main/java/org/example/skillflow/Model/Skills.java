@@ -25,9 +25,13 @@ public class Skills {
     @Column(columnDefinition = "text not null")
     private String description;
 
+    @OneToMany(mappedBy = "skills")
+    private AddSkillRequest addSkillRequest;
+
     @ManyToOne
     @JsonIgnore
     private Company company;
+
     @ManyToMany
     @JoinTable(
             name = "employee_skills",

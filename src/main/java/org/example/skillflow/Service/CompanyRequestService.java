@@ -5,8 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.Model.CompanyRequest;
-import org.example.skillflow.Model.Company_Request;
-import org.example.skillflow.Repository.Company_RequestRepository;
+import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,9 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompanyRequestService {
 
-    private final Company_RequestRepository companyRequestRepository;
+    private final CompanyRequestRepository companyRequestRepository;
 
-    public List<Company_Request> getAllCompanyRequests(){
+    public List<CompanyRequest> getAllCompanyRequests(){
         return companyRequestRepository.findAll();
     }
 
@@ -30,7 +29,7 @@ public class CompanyRequestService {
     }
 
     public void updateCompanyRequest(Integer id , @Valid CompanyRequest companyRequest){
-       Company_Request companyRequest1 = companyRequestRepository.findCompany_RequestById(id);
+       CompanyRequest companyRequest1 = companyRequestRepository.findCompanyRequestById(id);
        if (companyRequest1 == null){
            throw new APIException("Company Request Not found");
        }
@@ -48,7 +47,7 @@ public class CompanyRequestService {
     }
 
     public void deleteCompanyRequest(Integer id){
-        Company_Request companyRequest = companyRequestRepository.findCompany_RequestById(id);
+        CompanyRequest companyRequest = companyRequestRepository.findCompanyRequestById(id);
         if (companyRequest == null ){
             throw new APIException("company request not found");
         }

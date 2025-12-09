@@ -1,11 +1,8 @@
 package org.example.skillflow.Service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.Model.Company;
-import org.example.skillflow.Model.Company_Request;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
