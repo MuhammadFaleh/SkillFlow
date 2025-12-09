@@ -39,8 +39,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
         }
 
         @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
-        public ResponseEntity<?> SQLError(APIException apiExecption){
-            return ResponseEntity.status(400).body(new APIResponse(apiExecption.getMessage()));
+        public ResponseEntity<?> SQLError(APIException apiException){
+            return ResponseEntity.status(400).body(new APIResponse(apiException.getMessage()));
         }
 
         @ExceptionHandler(value = DataIntegrityViolationException.class)

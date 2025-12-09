@@ -1,6 +1,8 @@
 package org.example.skillflow.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.Company_Request;
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CompanyService {
 
     private final CompanyRepository companyRepository;

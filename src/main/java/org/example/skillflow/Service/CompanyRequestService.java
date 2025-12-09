@@ -1,8 +1,10 @@
 package org.example.skillflow.Service;
 
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
+import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Model.Company_Request;
 import org.example.skillflow.Repository.Company_RequestRepository;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CompanyRequestService {
 
     private final Company_RequestRepository companyRequestRepository;
@@ -20,14 +22,14 @@ public class CompanyRequestService {
         return companyRequestRepository.findAll();
     }
 
-    public void addCompanyRequest(Company_Request companyRequest){
+    public void addCompanyRequest(@Valid CompanyRequest companyRequest){
         companyRequest.setRequestDate(LocalDate.now());
         companyRequest.setEndDate(LocalDate.now().plusMonths(1));
         companyRequest.setStatus("pending");
         companyRequestRepository.save(companyRequest);
     }
 
-    public void updateCompanyRequest(Integer id , Company_Request companyRequest){
+    public void updateCompanyRequest(Integer id , @Valid CompanyRequest companyRequest){
        Company_Request companyRequest1 = companyRequestRepository.findCompany_RequestById(id);
        if (companyRequest1 == null){
            throw new APIException("Company Request Not found");
