@@ -22,41 +22,37 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty(message = "Name must be not empty")
-    @Column(nullable = false)
+    @Column(nullable = false , length = 200)
     private String name;
 
-    @NotEmpty(message = "username must be not empty")
-    @Column(nullable = false)
+    @Column(nullable = false , length = 200 , unique = true)
     private String username;
 
-    @NotEmpty(message = "CompanyName must be not empty")
-    @Column(nullable = false , columnDefinition = "varchar(255)")
+    @Column(nullable = false , unique = true , length = 100)
     private String email;
 
-    @NotEmpty(message = "password must be not empty")
-    @Column(nullable = false , columnDefinition = "varchar(255)")
+    @Column(nullable = false , length = 200 )
     private String password;
 
-    @NotEmpty(message = "record number must be not empty")
-    @Column(nullable = false , columnDefinition = "varchar(10)")
+    @Column(nullable = false , length = 10 , unique = true)
     private String record_number;
 
-    @NotEmpty(message = "country must be not empty")
-    @Column(nullable = false , columnDefinition = "varchar(50)")
-    private String county;
+    @Column(nullable = false , length = 200)
+    private String country;
 
-    @NotEmpty(message = "industry must be not empty")
-    @Column(nullable = false)
+    @Column(nullable = false , length = 200)
     private String industry;
 
+    private LocalDate created_at;
 
+
+
+//    -------- relational ----------
     @OneToMany(mappedBy = "company")
     private Set<Employee> employee;
     @OneToMany(mappedBy = "company")
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
-    private LocalDate created_at;
 
 }
