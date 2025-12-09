@@ -50,6 +50,7 @@ public class Company {
     @Column(nullable = false)
     private String industry;
 
+
     @OneToMany(mappedBy = "company")
     private Set<Employee> employee;
     @OneToMany(mappedBy = "company")
