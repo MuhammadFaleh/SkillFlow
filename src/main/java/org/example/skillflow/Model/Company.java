@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,6 +51,12 @@ public class Company {
     private String industry;
 
 
+    @OneToMany(mappedBy = "company")
+    private Set<Employee> employee;
+    @OneToMany(mappedBy = "company")
+    private Set<Manager> manager;
+    @OneToMany(mappedBy = "company")
+    private Set<Skills> skills;
     private LocalDate created_at;
 
 }
