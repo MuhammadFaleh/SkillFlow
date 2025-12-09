@@ -18,10 +18,13 @@ public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(columnDefinition = "varchar(200) not null")
     private String name;
+
     @Column(columnDefinition = "text not null")
     private String description;
+
     @ManyToOne
     @JsonIgnore
     private Company company;

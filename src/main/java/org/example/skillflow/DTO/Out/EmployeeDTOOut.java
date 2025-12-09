@@ -15,4 +15,5 @@ public class EmployeeDTOOut {
     private String gender;
     private Integer age;
     private String email;
+    private Integer company_id;
 }
