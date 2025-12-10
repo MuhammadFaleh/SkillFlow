@@ -46,7 +46,6 @@ public class ProjectService {
 
         project.setStatus("pending");
         project.setStart_date(LocalDateTime.now());
-
         projectRepository.save(project);
     }
 
