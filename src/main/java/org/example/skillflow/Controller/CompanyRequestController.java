@@ -27,13 +27,13 @@ public class CompanyRequestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addCompanyRequest(@RequestBody @Valid CompanyRequestDTOIn companyRequest){
+    public ResponseEntity<?> addCompanyRequest(@RequestBody @Valid Company_Request companyRequest){
         companyRequestService.addCompanyRequest(companyRequest);
         return ResponseEntity.status(200).body(new APIResponse("added company request successfully"));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateCompanyRequest(@PathVariable Integer id , @RequestBody @Valid CompanyRequestDTOIn companyRequest){
+    public ResponseEntity<?> updateCompanyRequest(@PathVariable Integer id , @RequestBody @Valid Company_Request companyRequest){
         companyRequestService.updateCompanyRequest(id, companyRequest);
         return ResponseEntity.status(200).body(new APIResponse("updated company request successfully"));
     }

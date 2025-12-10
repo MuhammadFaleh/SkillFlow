@@ -54,5 +54,6 @@ public class Company {
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
+    private LocalDate created_at;
 
 }
