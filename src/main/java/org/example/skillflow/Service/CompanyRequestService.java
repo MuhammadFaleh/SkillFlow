@@ -1,10 +1,11 @@
 package org.example.skillflow.Service;
 
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
-import org.example.skillflow.Model.Company_Request;
-import org.example.skillflow.Repository.Company_RequestRepository;
+import org.example.skillflow.DTO.In.CompanyRequestDTOIn;
+import org.example.skillflow.Model.CompanyRequest;
+import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

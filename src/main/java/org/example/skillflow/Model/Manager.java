@@ -45,5 +45,5 @@ public class Manager {
     private Set<Employee> employee;
 
     @OneToMany(mappedBy = "manager")
-    private AddSkillRequest addSkillRequest;
+    private Set<AddSkillRequest> addSkillRequest;
 }

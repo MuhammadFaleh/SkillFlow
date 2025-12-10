@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fd6b5aa-ebd4-44d0-bb89-97d98f5863e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/AddSkillRequestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/EmployeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/SkillsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/AddSkillRequestDTOIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/AddSkillRequestDTOOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/AddSkillRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/AddSkillRequestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/AddSkillRequestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/vaildationGroups/ValidationGroup1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/vaildationGroups/ValidationGroup2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Advice/ControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Advice/ControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/EmployeeDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/EmployeeDTOIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ManagerDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ManagerDTOIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/SkillsDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/SkillsDTOIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/EmployeeDTOOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/EmployeeDTOOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/SkillsDTOOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/SkillsDTOOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/AddSkillRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/AddSkillRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Skills.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Skills.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/AddSkillRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/AddSkillRequestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyRequestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/SkillsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/SkillsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Advice/ControllerAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Advice/ControllerAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Controller/CompanyRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Controller/CompanyRequestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Manager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Skills.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Skills.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyRequestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyRequestService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,9 +71,14 @@
   "keyToString": {
     "Application.SkillflowApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging Abdulmajed",
+    "Spring Boot.SkillflowApplication.executor": "Run",
+    "git-widget-placeholder": "Abdulmajed",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ACER/Desktop/capstone3/SkillFlow",

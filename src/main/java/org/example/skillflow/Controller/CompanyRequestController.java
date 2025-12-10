@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.example.skillflow.API.APIResponse;
 import org.example.skillflow.DTO.In.CompanyRequestDTOIn;
 import org.example.skillflow.DTO.In.CreateUserCompanyDTO;
+import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Service.CompanyRequestService;
 import org.example.skillflow.Service.CompanyService;
@@ -27,13 +28,13 @@ public class CompanyRequestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addCompanyRequest(@RequestBody @Valid Company_Request companyRequest){
+    public ResponseEntity<?> addCompanyRequest(@RequestBody @Valid CompanyRequestDTOIn companyRequest){
         companyRequestService.addCompanyRequest(companyRequest);
         return ResponseEntity.status(200).body(new APIResponse("added company request successfully"));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateCompanyRequest(@PathVariable Integer id , @RequestBody @Valid Company_Request companyRequest){
+    public ResponseEntity<?> updateCompanyRequest(@PathVariable Integer id , @RequestBody @Valid CompanyRequestDTOIn companyRequest){
         companyRequestService.updateCompanyRequest(id, companyRequest);
         return ResponseEntity.status(200).body(new APIResponse("updated company request successfully"));
     }
