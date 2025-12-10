@@ -52,4 +52,6 @@ public class ProjectManager {
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     private Set<Project> projects;
+
+    //hello
 }
