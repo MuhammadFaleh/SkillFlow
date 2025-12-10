@@ -104,11 +104,36 @@ public class EmployeeService {
         }
 
         employee.setManager(manager);
+        manager.getEmployee().add(employee);
+        managerRepository.save(manager);
         employeeRepository.save(employee);
     }
 
-    public void assignSkill(){
+    public void unassignManager(Integer company_id, Integer employee_id, Integer manger_id){
 
+        Company company = companyRepository.findCompanyById(company_id);
+        Manager manager = managerRepository.findManagerById(manger_id);
+        Employee employee = employeeRepository.findEmployeeById(employee_id);
+
+        if(company == null){
+            throw new APIException("company doesn't exist");
+        }
+
+        if(employee == null || manager == null){
+            throw new APIException("employee or manager doesn't exist");
+        }
+
+        if(!employee.getCompany().getId().equals(manager.getCompany().getId())
+                || !company_id.equals(employee.getCompany().getId())){
+            throw new APIException("employee or manger not in the same company");
+        }
+
+        if(!employee.getManager().getId().equals(manager.getId())){
+            throw new APIException("not the same manager and employee");
+        }
+
+        employee.setManager(null);
+        managerRepository.save(manager);
     }
 
     public EmployeeDTOOut convertToDTO(Employee employee){

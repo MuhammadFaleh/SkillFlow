@@ -105,7 +105,6 @@ public class AddSkillRequestService {
     public void approveSkill(Integer id, Integer manager_id){
         AddSkillRequest addSkillRequest = addSkillRequestRepository.findAddSkillRequestById(id);
 
-
         if(addSkillRequest == null){
             throw new APIException("no request found please make one");
         }
@@ -118,6 +117,7 @@ public class AddSkillRequestService {
         if(!addSkillRequest.getStatus().equalsIgnoreCase("pending")){
             throw new APIException("request is already checked");
         }
+        Skills skills = skillsRepository.findSkillsById(addSkillRequest.getSkills().getId());
 
         Employee employee = addSkillRequest.getEmployee();
         employee.getSkills().add(addSkillRequest.getSkills());
@@ -125,6 +125,8 @@ public class AddSkillRequestService {
         addSkillRequest.setStatus("approved");
         addSkillRequest.setEnd_date(LocalDateTime.now());
         addSkillRequestRepository.save(addSkillRequest);
+        skills.getEmployee().add(employee);
+        skillsRepository.save(skills);
     }
 
     public void rejectSkill(Integer id, Integer manager_id, AddSkillRequestDTOIn addSkillRequestDTOIn){
