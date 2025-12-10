@@ -1,9 +1,5 @@
 package org.example.skillflow.DTO.In;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> test
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

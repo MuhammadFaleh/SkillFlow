@@ -23,21 +23,13 @@ public class CompanyController {
     }
 
     @PostMapping("/add")
-<<<<<<< HEAD
-    public ResponseEntity<?> addCompany(@RequestBody @Valid Company company){
-=======
     public ResponseEntity<?> addCompany(@RequestBody @Valid CompanyDTOIn company){
->>>>>>> test
         companyService.addCompany(company);
         return ResponseEntity.status(200).body(new APIResponse("added company successfully"));
     }
 
     @PutMapping("/update/{companyId}")
-<<<<<<< HEAD
-    public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Valid Company company){
-=======
     public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Valid CompanyDTOIn company){
->>>>>>> test
         companyService.updateCompany(companyId, company);
         return ResponseEntity.status(200).body(new APIResponse("updated company successfully"));
     }

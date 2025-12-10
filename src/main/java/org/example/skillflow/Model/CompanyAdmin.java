@@ -1,9 +1,5 @@
 package org.example.skillflow.Model;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> test
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -13,11 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-<<<<<<< HEAD
-import java.util.Set;
-
-=======
->>>>>>> test
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,10 +16,6 @@ import java.util.Set;
 @Setter
 public class CompanyAdmin {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> test
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
@@ -44,15 +31,5 @@ public class CompanyAdmin {
         @ManyToOne
         @JsonIgnore
         private Company company;
-<<<<<<< HEAD
 }
-=======
 
-
-//         @OneToMany(mappedBy = "companyAdmin")
-//         @JsonIgnore
-//         private Set<requestTraining> requestTraining;
-
-
-}
->>>>>>> test

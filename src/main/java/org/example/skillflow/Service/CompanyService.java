@@ -1,11 +1,5 @@
 package org.example.skillflow.Service;
 
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import org.example.skillflow.API.APIException;
-import org.example.skillflow.Model.Company;
-import org.example.skillflow.Repository.CompanyRepository;
-=======
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.CompanyDTOIn;
@@ -14,57 +8,35 @@ import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Repository.CompanyRequestRepository;
->>>>>>> test
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
-<<<<<<< HEAD
-@AllArgsConstructor
-public class CompanyService {
-
-    private final CompanyRepository companyRepository;
-=======
 @RequiredArgsConstructor
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
     private final CompanyRequestRepository companyRequestRepository;
->>>>>>> test
 
     public List<Company> getCompany(){
         return companyRepository.findAll();
     }
 
-<<<<<<< HEAD
-    public void addCompany(Company company){
-        company.setCreated_at(LocalDate.now());
-        companyRepository.save(company);
-    }
-
-    public void updateCompany(Integer companyId , Company company){
-=======
     public void addCompany(CompanyDTOIn company){
-       Company company1 = convertToEntity(company);
+        Company company1 = convertToEntity(company);
         company1.setCreated_at(LocalDate.now());
         companyRepository.save(company1);
     }
 
     public void updateCompany(Integer companyId , CompanyDTOIn company){
->>>>>>> test
         Company oldCompany = companyRepository.findCompanyById(companyId);
         if (oldCompany == null){
             throw new APIException("company not found");
         }
-<<<<<<< HEAD
-        oldCompany.setCounty(company.getCounty());
-        oldCompany.setCreated_at(LocalDate.now());
-=======
 
         oldCompany.setCountry(company.getCountry());
->>>>>>> test
         oldCompany.setEmail(company.getEmail());
         oldCompany.setIndustry(company.getIndustry());
         oldCompany.setPassword(company.getPassword());
@@ -80,8 +52,6 @@ public class CompanyService {
         }
         companyRepository.delete(company);
     }
-<<<<<<< HEAD
-=======
 
     public void createUserCompany(String recordNumber , CreateUserCompanyDTO createUserCompanyDTO){
         CompanyRequest companyRequest = companyRequestRepository.findTheLatestRequest(recordNumber);
@@ -100,5 +70,4 @@ public class CompanyService {
     public Company convertToEntity(CompanyDTOIn companyDTOIn){
         return new Company(companyDTOIn.getCompanyId() , companyDTOIn.getName() , companyDTOIn.getUsername() , companyDTOIn.getEmail() , companyDTOIn.getPassword() , companyDTOIn.getRecord_number() , companyDTOIn.getCountry() , companyDTOIn.getIndustry() , null , null , null , null);
     }
->>>>>>> test
 }

@@ -1,9 +1,5 @@
 package org.example.skillflow.Model;
 import jakarta.persistence.*;
-<<<<<<< HEAD
-import jakarta.validation.constraints.NotEmpty;
-=======
->>>>>>> test
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,25 +19,6 @@ public class CompanyRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-<<<<<<< HEAD
-    @NotEmpty(message = "fullName must be not empty")
-    @Column(nullable = false , length = 200)
-    private String fullName;
-
-    @NotEmpty(message = "CompanyName must be not empty")
-    @Column(nullable = false , length = 200)
-    private String companyName;
-
-    @NotEmpty(message = "record number must be not empty")
-    @Column(nullable = false , length = 10)
-    private String recordNumber;
-
-    @NotEmpty(message = "country must be not empty")
-    @Column(nullable = false , length = 50)
-    private String county;
-
-    @NotEmpty(message = "industry must be not empty")
-=======
     @Column(nullable = false , length = 200)
     private String fullName;
 
@@ -57,7 +34,6 @@ public class CompanyRequest {
     @Column(nullable = false , length = 50)
     private String country;
 
->>>>>>> test
     @Column(nullable = false , length = 40)
     private String industry;
 
@@ -65,17 +41,10 @@ public class CompanyRequest {
     @Column(columnDefinition = "varchar(20) default 'PENDING'")
     private String status;
 
-<<<<<<< HEAD
-
-    private LocalDate requestDate;
-
-
-=======
     private Integer checkedByAdmin;
 
     private LocalDate requestDate;
 
->>>>>>> test
     private LocalDate endDate;
 
 

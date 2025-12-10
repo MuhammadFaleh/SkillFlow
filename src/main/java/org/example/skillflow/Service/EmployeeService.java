@@ -1,11 +1,5 @@
 package org.example.skillflow.Service;
 
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-=======
->>>>>>> test
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.EmployeeDTOIn;
@@ -109,12 +103,6 @@ public class EmployeeService {
             throw new APIException("employee has a manager please remove it first");
         }
 
-        employee.setManager(manager);
-<<<<<<< HEAD
-        employeeRepository.save(employee);
-    }
-
-=======
         manager.getEmployee().add(employee);
         managerRepository.save(manager);
         employeeRepository.save(employee);
@@ -147,7 +135,6 @@ public class EmployeeService {
         managerRepository.save(manager);
     }
 
->>>>>>> test
     public EmployeeDTOOut convertToDTO(Employee employee){
         return new EmployeeDTOOut(employee.getId(),employee.getUsername(),employee.getFull_name(),
                 employee.getGender(),employee.getAge(),employee.getEmail(), employee.getCompany().getId());
@@ -156,12 +143,6 @@ public class EmployeeService {
     public Employee convertToEntity(EmployeeDTOIn employeeDTOIn){
         return new Employee(employeeDTOIn.getEmployee_id(),employeeDTOIn.getUsername(),employeeDTOIn.getFull_name(),
                 employeeDTOIn.getGender(),employeeDTOIn.getAge(),employeeDTOIn.getEmail(),employeeDTOIn.getPassword(),
-<<<<<<< HEAD
-                null,null,null);
+                null,null,null,null,null);
     }
 }
-=======
-                null,null,null,null);
-    }
-}
->>>>>>> test

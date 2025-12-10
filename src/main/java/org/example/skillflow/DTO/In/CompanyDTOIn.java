@@ -1,9 +1,9 @@
 package org.example.skillflow.DTO.In;
 
-<<<<<<< HEAD
-public class CompanyDTOIn {
-=======
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -43,5 +43,4 @@ public class CompanyDTOIn {
     @Size(min = 5, max = 50, message = "industry length must be between 5 and 50 characters long")
     private String industry;
 
->>>>>>> test
 }

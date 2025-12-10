@@ -1,8 +1,5 @@
 package org.example.skillflow.DTO.In;
 
-<<<<<<< HEAD
-public class CompanyRequestDTOIn {
-=======
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -41,6 +38,4 @@ public class CompanyRequestDTOIn {
     @NotEmpty(message = "industry must be not empty")
     private String industry;
 
-
->>>>>>> test
 }

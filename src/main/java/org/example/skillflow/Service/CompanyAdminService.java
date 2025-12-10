@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CompanyAdmin {
+public class CompanyAdminService {
     private final CompanyAdminRepository companyAdminRepository;
 }
