@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 
 @Entity
 @AllArgsConstructor
@@ -31,5 +33,8 @@ public class CompanyAdmin {
         @ManyToOne
         @JsonIgnore
         private Company company;
+
+        @OneToMany(mappedBy = "companyAdmin")
+        private Set<NewSkillRequest> newSkillRequests;
 }
 

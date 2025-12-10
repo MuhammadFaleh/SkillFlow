@@ -36,18 +36,27 @@ public class Employee {
 
     @Column(columnDefinition = "varchar(255) not null")
     private String password;
+
     @ManyToOne
     @JsonIgnore
     private Project project;
+
     @OneToMany(mappedBy = "employee")
     private Set<AddSkillRequest> addSkillRequests;
+
     @ManyToOne
     @JsonIgnore
     private Manager manager;
+
     @ManyToOne
     @JsonIgnore
     private Company company;
+
     @ManyToMany(mappedBy = "employee")
     private Set<Skills> skills;
+
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<NewSkillRequest> newSkillRequests;
 
 }
