@@ -120,6 +120,7 @@ public class ProjectManagerService {
         project.getProjectManagers().add(projectManager);
         projectManager.getProjects().add(project);
 
+        projectManagerRepository.save(projectManager);
         projectRepository.save(project);
     }
 
@@ -150,6 +151,9 @@ public class ProjectManagerService {
         project.getProjectManagers().remove(projectManager);
         projectManager.getProjects().remove(project);
 
+
+
+        projectManagerRepository.save(projectManager);
         projectRepository.save(project);
     }
 

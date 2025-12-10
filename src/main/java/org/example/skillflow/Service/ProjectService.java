@@ -6,8 +6,10 @@ import org.example.skillflow.DTO.In.ProjectDTOIn;
 import org.example.skillflow.DTO.Out.ProjectDTOOut;
 import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.Project;
+import org.example.skillflow.Model.Skills;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Repository.ProjectRepository;
+import org.example.skillflow.Repository.SkillsRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
     private final CompanyRepository companyRepository;
+    private final SkillsRepository skillsRepository;
 
     public List<ProjectDTOOut> getProjects() {
         List<ProjectDTOOut> projectDTOOuts = new ArrayList<>();
@@ -85,6 +88,75 @@ public class ProjectService {
 
         projectRepository.delete(project);
 
+    }
+
+    public void assignSkillToProject(Integer projectId, Integer skillId, Integer companyId) {
+
+        Company company = companyRepository.findCompanyById(companyId);
+        Project project = projectRepository.findProjectById(projectId);
+        Skills skill = skillsRepository.findSkillsById(skillId);
+
+        if (company == null) {
+            throw new APIException("company doesn't exist with id: " + companyId);
+        }
+        if (project == null) {
+            throw new APIException("project doesn't exist with id: " + projectId);
+        }
+        if (skill == null) {
+            throw new APIException("skill doesn't exist with id: " + skillId);
+        }
+
+
+        if (project.getCompany() == null || !project.getCompany().getId().equals(companyId)) {
+            throw new APIException("project is not in this company: " + companyId);
+        }
+
+        if (skill.getCompany() == null || !skill.getCompany().getId().equals(companyId)) {
+            throw new APIException("skill is not in this company: " + companyId);
+        }
+
+
+        if (project.getSkills() != null && project.getSkills().contains(skill)) {
+            throw new APIException("this skill is already assigned to this project");
+        }
+
+
+        project.getSkills().add(skill);
+        skill.getProjects().add(project);
+
+
+        skillsRepository.save(skill);
+        projectRepository.save(project);
+    }
+
+    public void unassignSkillFromProject(Integer projectId, Integer skillId, Integer companyId) {
+        Company company = companyRepository.findCompanyById(companyId);
+        Project project = projectRepository.findProjectById(projectId);
+        Skills skill = skillsRepository.findSkillsById(skillId);
+
+        if (company == null) {
+            throw new APIException("company doesn't exist with id: " + companyId);
+        }
+        if (project == null) {
+            throw new APIException("project doesn't exist with id: " + projectId);
+        }
+        if (skill == null) {
+            throw new APIException("skill doesn't exist with id: " + skillId);
+        }
+
+        if (project.getCompany() == null || !project.getCompany().getId().equals(companyId) || skill.getCompany() == null || !skill.getCompany().getId().equals(companyId)) {
+            throw new APIException("project or skill are not in this company");
+        }
+
+        if (project.getSkills() == null || !project.getSkills().contains(skill)) {
+            throw new APIException("skill is not assigned to this project");
+        }
+
+        project.getSkills().remove(skill);
+        skill.getProjects().remove(project);
+
+        skillsRepository.save(skill);
+        projectRepository.save(project);
     }
 
     public Project convertToEntity(ProjectDTOIn projectDTOIn) {
