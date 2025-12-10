@@ -41,14 +41,14 @@ public class ProjectManagerController {
         return ResponseEntity.status(200).body(new APIResponse("project manager has been deleted with id: " + id));
     }
 
-    @PostMapping("/assign-project/{projectManagerId}/{projectId}/{companyId}")
+    @PutMapping("/assign-project/{projectManagerId}/{projectId}/{companyId}")
     public ResponseEntity<?> assignProjectToManager(@PathVariable Integer projectManagerId, @PathVariable Integer projectId, @PathVariable Integer companyId) {
         projectManagerService.assignProjectToManager(projectManagerId, projectId,companyId);
 
         return ResponseEntity.status(200).body(new APIResponse("project with id: "+ projectId +", has been assigned to project manager with id: " + projectManagerId));
     }
 
-    @PostMapping("unassign-project/{projectManagerId}/{projectId}/{companyId}")
+    @PutMapping("unassign-project/{projectManagerId}/{projectId}/{companyId}")
     public ResponseEntity<?> unassignProjectFromManager(@PathVariable Integer projectManagerId, @PathVariable Integer projectId, @PathVariable Integer companyId) {
         projectManagerService.unassignProjectFromManager(projectManagerId,projectId, companyId);
 

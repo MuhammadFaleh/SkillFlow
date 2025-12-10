@@ -41,4 +41,18 @@ public class ProjectController {
         return ResponseEntity.status(200).body(new APIResponse("project deleted successfully with id: " + projectId +", in company with id: " + companyId ));
     }
 
+    @PutMapping("/assign-skill/{projectId}/{skillId}/{companyId}")
+    public ResponseEntity<?> assignSkillToProject(@PathVariable Integer projectId, @PathVariable Integer skillId, @PathVariable Integer companyId) {
+        projectService.assignSkillToProject(projectId ,skillId,companyId);
+
+        return ResponseEntity.status(200).body(new APIResponse("skill with id: "+ skillId+", has been added to project with id: "+ projectId));
+    }
+
+
+    @PutMapping("/unassign-skill/{projectId}/{skillId}/{companyId}")
+    public ResponseEntity<?> unassignSkillFromProject(@PathVariable Integer projectId, @PathVariable Integer skillId, @PathVariable Integer companyId) {
+        projectService.unassignSkillFromProject(projectId,skillId, companyId);
+        return ResponseEntity.status(200).body(new APIResponse("skill with id: "+ skillId+", unassigned from project with id: " + projectId));
+    }
+
 }
