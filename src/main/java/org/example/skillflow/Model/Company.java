@@ -42,17 +42,7 @@ public class Company {
 
     @Column(nullable = false , length = 200)
     private String industry;
-
-<<<<<<< Updated upstream
-=======
-    @OneToMany(mappedBy = "company")
-    private Set<Employee> employee;
-    @OneToMany(mappedBy = "company")
-    private Set<Manager> manager;
-    @OneToMany(mappedBy = "company")
-    private Set<Skills> skills;
-
->>>>>>> Stashed changes
+    
     private LocalDate created_at;
 
 
