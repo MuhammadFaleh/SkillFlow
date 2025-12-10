@@ -16,6 +16,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+<<<<<<< HEAD
     @NotEmpty(message = "username must be not empty")
     @Column(columnDefinition = "varchar(40) not null")
     private String username;
@@ -26,6 +27,15 @@ public class Admin {
 
     @NotEmpty(message = "password must be not empty")
     @Column(columnDefinition = "varchar(100) not null")
+=======
+    @Column(nullable = false , unique = true , length = 20)
+    private String username;
+
+    @Column(nullable = false , unique = true , length = 200)
+    private String email;
+
+    @Column(nullable = false , length = 50)
+>>>>>>> test
     private String password;
 
 }

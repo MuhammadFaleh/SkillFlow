@@ -19,10 +19,15 @@ public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(columnDefinition = "varchar(200) not null")
     private String name;
+
     @Column(columnDefinition = "text not null")
     private String description;
+
+    @OneToMany(mappedBy = "skills")
+    private Set<AddSkillRequest> addSkillRequest;
 
     @ManyToOne
     @JsonIgnore
@@ -37,7 +42,17 @@ public class Skills {
     )
     private Set<Employee> employee;
 
+
     @ManyToMany(mappedBy = "skills")
     @JsonIgnore
     private Set<Project> projects;
+
+//    @ManyToMany()
+//    @JoinTable(
+//            name = "",
+//            joinColumns = @JoinColumn(name = ""),
+//            inverseJoinColumns = @JoinColumn(name = "")
+//    )
+//    private Set<Project> project;
+
 }

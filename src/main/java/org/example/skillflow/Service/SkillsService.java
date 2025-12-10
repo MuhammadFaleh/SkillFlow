@@ -72,7 +72,8 @@ public class SkillsService {
     }
 
     public Skills convertToEntity(SkillsDTOIn skillsDTOIn){
-        return new Skills(skillsDTOIn.getSkills_id(), skillsDTOIn.getName(),skillsDTOIn.getDescription(), null, null);
+        return new Skills(skillsDTOIn.getSkills_id(), skillsDTOIn.getName(),skillsDTOIn.getDescription(),
+                null,null, null,null);
     }
 
     public SkillsDTOOut convertToDTO(Skills skills){

@@ -15,6 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 public class Employee {
+<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,6 +31,34 @@ public class Employee {
     private String email;
     @Column(columnDefinition = "varchar(255) not null")
     private String password;
+=======
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(columnDefinition = "varchar(40) not null unique")
+    private String username;
+
+    @Column(columnDefinition = "varchar(200) not null")
+    private String full_name;
+
+    @Column(columnDefinition = "varchar(1) not null check(gender='M' or gender='F')")
+    private String gender;
+
+    @Column(columnDefinition = "int not null check(age>20)")
+    private Integer age;
+
+    @Column(columnDefinition = "varchar(200)", unique = true, nullable = false)
+    private String email;
+
+    @Column(columnDefinition = "varchar(255) not null")
+    private String password;
+//    @ManyToMany(mappedBy = "employee")
+//    private Project project;
+    @OneToMany(mappedBy = "employee")
+    private Set<AddSkillRequest> addSkillRequests;
+>>>>>>> test
 
     @ManyToOne
     @JsonIgnore

@@ -1,5 +1,6 @@
 package org.example.skillflow.Model;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -55,4 +56,7 @@ public class Project {
     )
     private Set<Skills> skills;
 
+=======
+public class Project {
+>>>>>>> test
 }

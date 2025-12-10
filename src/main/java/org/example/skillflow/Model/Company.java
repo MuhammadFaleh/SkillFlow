@@ -22,6 +22,7 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+<<<<<<< HEAD
     @NotEmpty(message = "Name must be not empty")
     @Column(nullable = false)
     private String name;
@@ -51,12 +52,44 @@ public class Company {
     private String industry;
 
 
+=======
+    @Column(nullable = false , length = 200)
+    private String name;
+
+    @Column(nullable = false , length = 200 , unique = true)
+    private String username;
+
+    @Column(nullable = false , unique = true , length = 100)
+    private String email;
+
+    @Column(nullable = false , length = 200 )
+    private String password;
+
+    @Column(nullable = false , length = 10 , unique = true)
+    private String record_number;
+
+    @Column(nullable = false , length = 200)
+    private String country;
+
+    @Column(nullable = false , length = 200)
+    private String industry;
+    
+    private LocalDate created_at;
+
+
+
+//    -------- relational ----------
+>>>>>>> test
     @OneToMany(mappedBy = "company")
     private Set<Employee> employee;
     @OneToMany(mappedBy = "company")
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
+<<<<<<< HEAD
     private LocalDate created_at;
+=======
+//    private LocalDate created_at;
+>>>>>>> test
 
 }

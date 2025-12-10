@@ -4,6 +4,7 @@ package org.example.skillflow.Controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIResponse;
+import org.example.skillflow.DTO.In.CompanyDTOIn;
 import org.example.skillflow.Model.Company;
 import org.example.skillflow.Service.CompanyService;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,21 @@ public class CompanyController {
     }
 
     @PostMapping("/add")
+<<<<<<< HEAD
     public ResponseEntity<?> addCompany(@RequestBody @Valid Company company){
+=======
+    public ResponseEntity<?> addCompany(@RequestBody @Valid CompanyDTOIn company){
+>>>>>>> test
         companyService.addCompany(company);
         return ResponseEntity.status(200).body(new APIResponse("added company successfully"));
     }
 
     @PutMapping("/update/{companyId}")
+<<<<<<< HEAD
     public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Valid Company company){
+=======
+    public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Valid CompanyDTOIn company){
+>>>>>>> test
         companyService.updateCompany(companyId, company);
         return ResponseEntity.status(200).body(new APIResponse("updated company successfully"));
     }
