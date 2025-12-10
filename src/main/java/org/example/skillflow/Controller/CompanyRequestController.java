@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.example.skillflow.API.APIResponse;
 import org.example.skillflow.DTO.In.CompanyRequestDTOIn;
 import org.example.skillflow.DTO.In.CreateUserCompanyDTO;
+import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Service.CompanyRequestService;
 import org.example.skillflow.Service.CompanyService;

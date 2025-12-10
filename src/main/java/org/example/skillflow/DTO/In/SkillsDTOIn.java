@@ -15,10 +15,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SkillsDTOIn {
     private Integer skills_id;
+
     @NotBlank(message = "skill name must not be empty")
     @Size(min = 5, max = 200, message = "skill name length must be between 5 and 200 characters long")
     private String name;
+
     @NotBlank(message = "skill description must not be empty")
     @Size(min = 5, max = 300, message = "skill description length must be between 5 and 300 characters long")
     private String description;
+
+    private Integer company_id;
 }
