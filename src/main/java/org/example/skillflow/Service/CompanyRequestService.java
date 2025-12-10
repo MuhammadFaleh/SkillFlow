@@ -1,9 +1,9 @@
 package org.example.skillflow.Service;
 
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
+import org.example.skillflow.DTO.In.CompanyRequestDTOIn;
 import org.example.skillflow.Model.CompanyRequest;
 import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
@@ -21,29 +21,48 @@ public class CompanyRequestService {
         return companyRequestRepository.findAll();
     }
 
-    public void addCompanyRequest(@Valid CompanyRequest companyRequest){
-        companyRequest.setRequestDate(LocalDate.now());
-        companyRequest.setEndDate(LocalDate.now().plusMonths(1));
-        companyRequest.setStatus("pending");
-        companyRequestRepository.save(companyRequest);
+    public void addCompanyRequest(CompanyRequestDTOIn companyRequest){
+        CompanyRequest latestRequest = companyRequestRepository.findTheLatestRequest(companyRequest.getRecordNumber());
+        if (latestRequest != null){
+            if ("pending".equalsIgnoreCase(latestRequest.getStatus())){
+            throw new APIException("you have previous order is status pending");
+            }
+            if ("approved".equalsIgnoreCase(latestRequest.getStatus())){
+            throw new APIException("you have previous order is status approved");
+            }
+        }
+        CompanyRequest companyRequest1 = convertToEntity(companyRequest);
+        companyRequest1.setRequestDate(LocalDate.now());
+        companyRequest1.setStatus("pending");
+        companyRequestRepository.save(companyRequest1);
     }
 
-    public void updateCompanyRequest(Integer id , @Valid CompanyRequest companyRequest){
-       CompanyRequest companyRequest1 = companyRequestRepository.findCompanyRequestById(id);
-       if (companyRequest1 == null){
+    public void updateCompanyRequest(Integer id , CompanyRequestDTOIn companyRequestDTOIn){
+        CompanyRequest latestRequest = companyRequestRepository.findTheLatestRequest(companyRequestDTOIn.getRecordNumber());
+        if (latestRequest != null) {
+            if ("approved".equalsIgnoreCase(latestRequest.getStatus())) {
+                throw new APIException("you have previous order is status approved");
+            }
+            if ("rejected".equalsIgnoreCase(latestRequest.getStatus())) {
+                throw new APIException("this request is rejected. Please submit a new request");
+            }
+        }
+
+       CompanyRequest checked = companyRequestRepository.findCompanyRequestById(id);
+       if (checked == null){
            throw new APIException("Company Request Not found");
        }
-       if ("accepted".equalsIgnoreCase(companyRequest.getStatus())){
-           throw new APIException("the request is accepted");
+       if (!"pending".equalsIgnoreCase(checked.getStatus())){
+           throw new APIException("the request is not pending");
        }
-       companyRequest1.setCompanyName(companyRequest.getCompanyName());
-       companyRequest1.setCounty(companyRequest.getCounty());
-       companyRequest1.setFullName(companyRequest.getFullName());
-       companyRequest1.setIndustry(companyRequest.getIndustry());
-       companyRequest1.setRecordNumber(companyRequest.getRecordNumber());
-       companyRequest1.setRequestDate(LocalDate.now());
-       companyRequest1.setEndDate(LocalDate.now().plusMonths(1));
-       companyRequestRepository.save(companyRequest1);
+//       convert to entity
+       checked.setCompanyName(companyRequestDTOIn.getCompanyName());
+       checked.setCountry(companyRequestDTOIn.getCountry());
+       checked.setFullName(companyRequestDTOIn.getFullName());
+       checked.setIndustry(companyRequestDTOIn.getIndustry());
+       checked.setRecordNumber(companyRequestDTOIn.getRecordNumber());
+
+       companyRequestRepository.save(checked);
     }
 
     public void deleteCompanyRequest(Integer id){
@@ -55,5 +74,13 @@ public class CompanyRequestService {
             throw new APIException("only pending requests can be deleted");
         }
         companyRequestRepository.delete(companyRequest);
+    }
+
+    public CompanyRequest checkStatusOrderByRecordNumber(String recordNumber){
+        return companyRequestRepository.findTheLatestRequest(recordNumber);
+    }
+
+    public CompanyRequest convertToEntity(CompanyRequestDTOIn companyRequestDTOIn){
+        return new CompanyRequest(companyRequestDTOIn.getCompanyRequestId() , companyRequestDTOIn.getFullName() , companyRequestDTOIn.getEmail() , companyRequestDTOIn.getCompanyName() , companyRequestDTOIn.getRecordNumber() , companyRequestDTOIn.getCountry() , companyRequestDTOIn.getIndustry() , null , null , null , null);
     }
 }

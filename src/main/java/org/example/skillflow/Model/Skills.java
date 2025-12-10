@@ -26,7 +26,7 @@ public class Skills {
     private String description;
 
     @OneToMany(mappedBy = "skills")
-    private AddSkillRequest addSkillRequest;
+    private Set<AddSkillRequest> addSkillRequest;
 
     @ManyToOne
     @JsonIgnore
