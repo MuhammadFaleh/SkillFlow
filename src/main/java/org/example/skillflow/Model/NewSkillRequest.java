@@ -19,19 +19,30 @@ public class NewSkillRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty(message = "skill name must not be empty")
     @Column(columnDefinition = "varchar(200) not null")
     private String name;
 
-    @NotEmpty(message = "skill description must not be empty")
     @Column(columnDefinition = "text not null")
     private String description;
 
+    @Column(columnDefinition = "varchar(20) not null check('pending','approved','rejected')")
+    private String status;
+
     @ManyToOne
     @JsonIgnore
+    @JoinTable(
+            name = "company_skillsRequests",
+            joinColumns = @JoinColumn(name = "newSkillRequest_id"),
+            inverseJoinColumns = @JoinColumn(name = "companyAdmin_id ")
+    )
     private CompanyAdmin companyAdmin;
 
     @ManyToOne
     @JsonIgnore
+    @JoinTable(
+            name = "employee_skillsRequests",
+            joinColumns = @JoinColumn(name = "newSkillRequest_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
     private Employee employee;
 }

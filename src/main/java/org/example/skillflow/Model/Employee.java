@@ -49,5 +49,8 @@ public class Employee {
     private Company company;
     @ManyToMany(mappedBy = "employee")
     private Set<Skills> skills;
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<NewSkillRequest> newSkillRequests;
 
 }
