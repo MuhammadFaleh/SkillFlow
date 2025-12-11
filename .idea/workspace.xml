@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c40f78ac-3766-4e89-9acd-3f429eedb2aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/NewSkillRequestDTOOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/NewSkillRequestDTOOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/NewSkillRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/NewSkillRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/RequestTraining.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/RequestTraining.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/NewSkillRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/NewSkillRequestService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1765362933332</updated>
       <workItem from="1765383876062" duration="8441000" />
-      <workItem from="1765449682567" duration="12571000" />
+      <workItem from="1765449682567" duration="13182000" />
     </task>
     <servers />
   </component>
