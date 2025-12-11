@@ -5,7 +5,6 @@ import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.AddSkillRequestDTOIn;
 import org.example.skillflow.DTO.Out.AddSkillRequestDTOOut;
 import org.example.skillflow.Model.AddSkillRequest;
-import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.Employee;
 import org.example.skillflow.Model.Skills;
 import org.example.skillflow.Repository.AddSkillRequestRepository;
@@ -65,6 +64,7 @@ public class AddSkillRequestService {
         newRequest.setStart_date(LocalDateTime.now());
         newRequest.setStatus("pending");
         newRequest.setSkills(skills);
+        newRequest.setEmployee(employee);
         newRequest.setManager(employee.getManager());
         newRequest.setCompany(employee.getCompany());
         addSkillRequestRepository.save(newRequest);
@@ -78,6 +78,10 @@ public class AddSkillRequestService {
            throw new APIException("no request found please make one");
        }
 
+       if(!addSkillRequest.getEmployee().getId().equals(addSkillRequestDTOIn.getEmployee_id())){
+           throw new APIException("unauthorized to update the request");
+       }
+
        if(!addSkillRequest.getStatus().equalsIgnoreCase("pending")){
            throw new APIException("unable to update request, it's already checked");
        }
@@ -86,12 +90,17 @@ public class AddSkillRequestService {
         addSkillRequestRepository.save(addSkillRequest);
     }
 
-    public void deleteRequest(Integer id){
+    public void deleteRequest(Integer id , Integer employee_id){
         AddSkillRequest addSkillRequest =
                 addSkillRequestRepository.findAddSkillRequestById(id);
+        Employee employee = employeeRepository.findEmployeeById(employee_id);
 
-        if(addSkillRequest == null){
+        if(addSkillRequest == null || employee==null){
             throw new APIException("no request found please make one");
+        }
+
+        if(!employee_id.equals(addSkillRequest.getEmployee().getId())){
+            throw new APIException("unauthorized to delete the request");
         }
 
         if(addSkillRequest.getStatus().equalsIgnoreCase("approved") ||
@@ -118,7 +127,7 @@ public class AddSkillRequestService {
             throw new APIException("request is already checked");
         }
         Skills skills = skillsRepository.findSkillsById(addSkillRequest.getSkills().getId());
-
+        // send email or whatsapp message
         Employee employee = addSkillRequest.getEmployee();
         employee.getSkills().add(addSkillRequest.getSkills());
         employeeRepository.save(employee);
@@ -145,7 +154,7 @@ public class AddSkillRequestService {
         if(!addSkillRequest.getStatus().equalsIgnoreCase("pending")){
             throw new APIException("request is already checked");
         }
-
+        // send email or whatsapp message
         addSkillRequest.setStatus("rejected");
         addSkillRequest.setEnd_date(LocalDateTime.now());
         addSkillRequest.setNotes(addSkillRequestDTOIn.getNotes());
@@ -154,14 +163,30 @@ public class AddSkillRequestService {
 
     public List<AddSkillRequestDTOOut> getRequestsByEmployeeId(Integer id){
         List<AddSkillRequestDTOOut> addSkillRequestDTOOuts = new ArrayList<>();
-        for(AddSkillRequest addSkillRequest : addSkillRequestRepository.findAddSkillRequestByEmployee_id(id)){
+        for(AddSkillRequest addSkillRequest : addSkillRequestRepository.findAddSkillRequestByEmployeeId(id)){
+            addSkillRequestDTOOuts.add(convertToDTO(addSkillRequest));
+        }
+        return addSkillRequestDTOOuts;
+    }
+
+    public List<AddSkillRequestDTOOut> getRequestsByManagerIdAndStatus(Integer id, String status){
+        List<AddSkillRequestDTOOut> addSkillRequestDTOOuts = new ArrayList<>();
+        for(AddSkillRequest addSkillRequest : addSkillRequestRepository.findAddSkillRequestByManagerIdAndStatus(id, status)){
+            addSkillRequestDTOOuts.add(convertToDTO(addSkillRequest));
+        }
+        return addSkillRequestDTOOuts;
+    }
+
+    public List<AddSkillRequestDTOOut> getRequestsByCompanyId(Integer id){
+        List<AddSkillRequestDTOOut> addSkillRequestDTOOuts = new ArrayList<>();
+        for(AddSkillRequest addSkillRequest : addSkillRequestRepository.findAddSkillRequestByCompanyId(id)){
             addSkillRequestDTOOuts.add(convertToDTO(addSkillRequest));
         }
         return addSkillRequestDTOOuts;
     }
 
     public AddSkillRequest convertToEntity(AddSkillRequestDTOIn addSkillRequestDTOIn){
-        return new AddSkillRequest(addSkillRequestDTOIn.getSkill_id(),addSkillRequestDTOIn.getStart_date(),
+        return new AddSkillRequest(null,addSkillRequestDTOIn.getStart_date(),
                 addSkillRequestDTOIn.getEnd_date(),null, addSkillRequestDTOIn.getDescription()
                 ,addSkillRequestDTOIn.getNotes(), null, null,null,null);
     }

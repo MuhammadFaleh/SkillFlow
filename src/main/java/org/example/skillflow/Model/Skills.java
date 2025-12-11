@@ -47,6 +47,9 @@ public class Skills {
     @JsonIgnore
     private Set<Project> projects;
 
+//    @OneToMany(mappedBy = "skills")
+//    private Set<NewSkillRequest> newSkillRequests;
+
 //    @ManyToMany()
 //    @JoinTable(
 //            name = "",

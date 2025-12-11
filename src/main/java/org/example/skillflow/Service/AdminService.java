@@ -11,6 +11,7 @@ import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -68,7 +69,7 @@ public class AdminService {
         }
         companyRequest.setStatus("approved");
         companyRequest.setCheckedByAdmin(adminId);
-        companyRequest.setEndDate(LocalDate.now());
+        companyRequest.setEndDate(LocalDateTime.now());
         companyRequestRepository.save(companyRequest);
     }
 
@@ -86,7 +87,7 @@ public class AdminService {
         }
         companyRequest.setStatus("rejected");
         companyRequest.setCheckedByAdmin(adminId);
-        companyRequest.setEndDate(LocalDate.now());
+        companyRequest.setEndDate(LocalDateTime.now());
         companyRequestRepository.save(companyRequest);
     }
     public Admin convertToEntity(AdminDTOIn adminDTOIn){

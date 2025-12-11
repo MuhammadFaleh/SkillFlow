@@ -25,7 +25,14 @@ public class CompanyService {
     }
 
     public void addCompany(CompanyDTOIn company){
+        CompanyRequest companyRequest = companyRequestRepository.findTheLatestRequest(company.getRecord_number());
+        if(companyRequest == null || !companyRequest.getStatus().equalsIgnoreCase("approved")){
+            throw new APIException("request is not approved");
+        }
+
         Company company1 = convertToEntity(company);
+        company1.setCountry(companyRequest.getCountry());
+        company1.setIndustry(companyRequest.getIndustry());
         company1.setCreated_at(LocalDate.now());
         companyRepository.save(company1);
     }

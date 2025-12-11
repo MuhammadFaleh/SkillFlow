@@ -28,10 +28,10 @@ public class Company {
     @Column(nullable = false , length = 200 , unique = true)
     private String username;
 
-    @Column(nullable = false , unique = true , length = 100)
+    @Column(nullable = false , unique = true , length = 200)
     private String email;
 
-    @Column(nullable = false , length = 200 )
+    @Column(nullable = false , length = 254 )
     private String password;
 
     @Column(nullable = false , length = 10 , unique = true)
@@ -42,7 +42,7 @@ public class Company {
 
     @Column(nullable = false , length = 200)
     private String industry;
-    
+
     private LocalDate created_at;
 
 

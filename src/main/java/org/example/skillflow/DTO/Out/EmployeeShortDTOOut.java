@@ -1,5 +1,6 @@
 package org.example.skillflow.DTO.Out;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,12 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ManagerDTOOut {
-    private Integer manager_id;
+public class EmployeeShortDTOOut {
+    private Integer employee_id;
     private String username;
-    private String full_name;
-    private String gender;
-    private Integer age;
     private String email;
-    private Integer company_id;
 }

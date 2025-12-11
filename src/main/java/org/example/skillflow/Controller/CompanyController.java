@@ -7,7 +7,10 @@ import org.example.skillflow.API.APIResponse;
 import org.example.skillflow.DTO.In.CompanyDTOIn;
 import org.example.skillflow.Model.Company;
 import org.example.skillflow.Service.CompanyService;
+import org.example.skillflow.vaildationGroups.ValidationGroup1;
+import org.example.skillflow.vaildationGroups.ValidationGroup2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +32,7 @@ public class CompanyController {
     }
 
     @PutMapping("/update/{companyId}")
-    public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Valid CompanyDTOIn company){
+    public ResponseEntity<?> updateCompany(@PathVariable Integer companyId , @RequestBody @Validated(ValidationGroup1.class) CompanyDTOIn company){
         companyService.updateCompany(companyId, company);
         return ResponseEntity.status(200).body(new APIResponse("updated company successfully"));
     }

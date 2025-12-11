@@ -6,6 +6,9 @@ import org.example.skillflow.DTO.In.CompanyAdminDTOIn;
 import org.example.skillflow.DTO.Out.CompanyAdminDTOOut;
 import org.example.skillflow.Model.*;
 import org.example.skillflow.Repository.*;
+import org.example.skillflow.Repository.CompanyRepository;
+import org.example.skillflow.Repository.NewSkillRequestRepository;
+import org.example.skillflow.Repository.SkillsRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
