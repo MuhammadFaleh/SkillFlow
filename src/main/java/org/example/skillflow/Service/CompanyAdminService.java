@@ -8,6 +8,7 @@ import org.example.skillflow.Model.*;
 import org.example.skillflow.Repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +109,7 @@ public class CompanyAdminService {
 
         request.setCompanyAdmin(companyAdmin);
         request.setStatus("approved");
+        request.setEnd_date(LocalDateTime.now());
         newSkillRequestRepository.save(request);
     }
 

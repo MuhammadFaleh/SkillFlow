@@ -1,8 +1,11 @@
 package org.example.skillflow.DTO.Out;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -13,4 +16,6 @@ public class NewSkillRequestDTOOut {
     private String name;
     private String description;
     private String status;
+    private LocalDateTime start_date;
+    private LocalDateTime end_date;
 }
