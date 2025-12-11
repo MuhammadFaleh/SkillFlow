@@ -8,6 +8,7 @@ import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.Project;
 import org.example.skillflow.Model.ProjectManager;
 import org.example.skillflow.Repository.CompanyRepository;
+import org.example.skillflow.Repository.EmployeeRepository;
 import org.example.skillflow.Repository.ProjectManagerRepository;
 import org.example.skillflow.Repository.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class ProjectManagerService {
     private final ProjectManagerRepository projectManagerRepository;
     private final CompanyRepository companyRepository;
     private final ProjectRepository projectRepository;
+    private final EmployeeRepository employeeRepository;
 
     public List<ProjectManagerDTOOut> getProjectManagers(){
         List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();

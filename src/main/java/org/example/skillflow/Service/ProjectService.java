@@ -180,6 +180,76 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
+
+    public void assignEmployeeToProject(Integer projectId, Integer employeeId, Integer companyId) {
+
+        Company company = companyRepository.findCompanyById(companyId);
+        Project project = projectRepository.findProjectById(projectId);
+        Employee employee = employeeRepository.findEmployeeById(employeeId);
+
+        if (company == null) {
+            throw new APIException("company doesn't exist with id: " + companyId);
+        }
+        if (project == null) {
+            throw new APIException("project doesn't exist with id: " + projectId);
+        }
+        if (employee == null) {
+            throw new APIException("employee doesn't exist with id: " + employeeId);
+        }
+
+        if (project.getCompany() == null || !project.getCompany().getId().equals(companyId)) {
+            throw new APIException("project is not in this company: " + companyId);
+        }
+        if (employee.getCompany() == null || !employee.getCompany().getId().equals(companyId)) {
+            throw new APIException("employee is not in this company: " + companyId);
+        }
+
+        if (employee.getProject() != null) {
+            throw new APIException("employee is already assigned to a project, unassign first");
+        }
+
+        employee.setProject(project);
+        project.getEmployees().add(employee);
+
+        employeeRepository.save(employee);
+        projectRepository.save(project);
+    }
+
+
+    public void unassignEmployeeFromProject(Integer projectId, Integer employeeId, Integer companyId) {
+        Company company = companyRepository.findCompanyById(companyId);
+        Project project = projectRepository.findProjectById(projectId);
+        Employee employee = employeeRepository.findEmployeeById(employeeId);
+
+        if (company == null) {
+            throw new APIException("company doesn't exist with id: " + companyId);
+        }
+        if (project == null) {
+            throw new APIException("project doesn't exist with id: " + projectId);
+        }
+        if (employee == null) {
+            throw new APIException("employee doesn't exist with id: " + employeeId);
+        }
+
+        if (project.getCompany() == null || !project.getCompany().getId().equals(companyId) || employee.getCompany() == null || !employee.getCompany().getId().equals(companyId)) {
+            throw new APIException("project or employee are not in this company");
+        }
+
+
+        if (employee.getProject() == null || !employee.getProject().getId().equals(projectId)) {
+            throw new APIException("employee is not assigned to this project");
+        }
+
+        employee.setProject(null);
+
+        if (project.getEmployees() != null) {
+            project.getEmployees().remove(employee);
+        }
+
+        employeeRepository.save(employee);
+        projectRepository.save(project);
+    }
+
     public void completeProject(Integer projectId, Integer companyId) {
 
 
@@ -220,7 +290,7 @@ public class ProjectService {
 
         project.setStatus("completed");
         project.setEnd_date(LocalDateTime.now());
-        
+
         projectRepository.save(project);
     }
 
