@@ -9,6 +9,7 @@ import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class CompanyRequestService {
             }
         }
         CompanyRequest companyRequest1 = convertToEntity(companyRequest);
-        companyRequest1.setRequestDate(LocalDate.now());
+        companyRequest1.setRequestDate(LocalDateTime.now());
         companyRequest1.setStatus("pending");
         companyRequestRepository.save(companyRequest1);
     }

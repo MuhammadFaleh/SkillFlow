@@ -47,10 +47,10 @@ public class Project {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<Employee> employees;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany
     @JoinTable(
             name = "project_skills",
-            joinColumns = @JoinColumn(name = "project_id"),
+            joinColumns = @JoinColumn(name = "projects_id"),
             inverseJoinColumns = @JoinColumn(name = "skills_id")
     )
     private Set<Skills> skills;

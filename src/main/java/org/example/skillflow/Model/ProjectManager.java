@@ -45,7 +45,7 @@ public class ProjectManager {
     @JsonIgnore
     private Company company;
 
-    @ManyToMany(mappedBy = "projectManagers")
+    @ManyToMany
     @JoinTable(
             name = "projectManager_projects",
             joinColumns = @JoinColumn(name = "projectManager_Id"),
