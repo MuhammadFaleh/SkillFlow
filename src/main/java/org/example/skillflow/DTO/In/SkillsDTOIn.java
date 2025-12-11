@@ -1,10 +1,7 @@
 package org.example.skillflow.DTO.In;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +21,6 @@ public class SkillsDTOIn {
     @Size(min = 5, max = 300, message = "skill description length must be between 5 and 300 characters long")
     private String description;
 
+    @NotNull(message = "company_id must be not empty")
     private Integer company_id;
 }

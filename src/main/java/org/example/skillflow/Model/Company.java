@@ -1,8 +1,6 @@
 package org.example.skillflow.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,33 +35,24 @@ public class Company {
     @Column(nullable = false , length = 10 , unique = true)
     private String record_number;
 
-    @Column(nullable = false , length = 200)
+    @Column(name = "country", nullable = false , length = 200)
     private String country;
 
-    @Column(nullable = false , length = 200)
+    @Column( nullable = false , length = 200)
     private String industry;
 
-<<<<<<< Updated upstream
-=======
-    @OneToMany(mappedBy = "company")
-    private Set<Employee> employee;
-    @OneToMany(mappedBy = "company")
-    private Set<Manager> manager;
-    @OneToMany(mappedBy = "company")
-    private Set<Skills> skills;
 
->>>>>>> Stashed changes
     private LocalDate created_at;
-
-
 
 //    -------- relational ----------
     @OneToMany(mappedBy = "company")
+    private Set<CompanyAdmin> companyAdmin;
+    @OneToMany(mappedBy = "company")
     private Set<Employee> employee;
     @OneToMany(mappedBy = "company")
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
-//    private LocalDate created_at;
-
+    @OneToMany(mappedBy = "company")
+    private Set<Training> trainings;
 }

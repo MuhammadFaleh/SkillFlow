@@ -20,18 +20,20 @@ public class ManagerService {
     private final EmployeeRepository employeeRepository;
     private final ManagerRepository managerRepository;
 
-    public List<ManagerDTOOut>
+//    public List<ManagerDTOOut> getMangers(){
+//        return managerRepository.findAll();
+//    }
 
 
 
-    public ManagerDTOOut convertToDTO(Manager manager){
-        return new ManagerDTOOut(manager.getId(),manager.get)
-    }
-
-    public Employee convertToEntity(EmployeeDTOIn employeeDTOIn){
-        return new Employee(employeeDTOIn.getEmployee_id(),employeeDTOIn.getUsername(),employeeDTOIn.getFull_name(),
-                employeeDTOIn.getGender(),employeeDTOIn.getAge(),employeeDTOIn.getEmail(),employeeDTOIn.getPassword(),
-                null,null,null,null);
-    }
+//    public ManagerDTOOut convertToDTO(Manager manager){
+//        return new ManagerDTOOut(manager.getId(),manager.get);
+//    }
+//
+//    public Employee convertToEntity(EmployeeDTOIn employeeDTOIn){
+//        return new Employee(employeeDTOIn.getEmployee_id(),employeeDTOIn.getUsername(),employeeDTOIn.getFull_name(),
+//                employeeDTOIn.getGender(),employeeDTOIn.getAge(),employeeDTOIn.getEmail(),employeeDTOIn.getPassword(),
+//                null,null,null,null);
+//    }
 
 }

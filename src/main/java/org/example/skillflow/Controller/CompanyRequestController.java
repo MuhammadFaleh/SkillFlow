@@ -13,13 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/companyRequest")
+@RequestMapping("/api/v1/company-request")
 @AllArgsConstructor
 public class CompanyRequestController {
 
 
     private final CompanyRequestService companyRequestService;
-    private final CompanyRepository companyRepository;
     private final CompanyService companyService;
 
     @GetMapping("/get")
@@ -45,12 +44,12 @@ public class CompanyRequestController {
         return ResponseEntity.status(200).body(new APIResponse("deleted company successfully"));
     }
 
-    @GetMapping("/checkStatusRequest/{recordNumber}")
+    @GetMapping("/checkStatus-request/{recordNumber}")
     public ResponseEntity<?> getRequestStatus(@PathVariable String recordNumber){
         return ResponseEntity.status(200).body(companyRequestService.checkStatusOrderByRecordNumber(recordNumber));
     }
 
-    @PostMapping("/createUser/{recordNumber}")
+    @PostMapping("/create-user/{recordNumber}")
     public ResponseEntity<?> createUser(@PathVariable String recordNumber , @RequestBody @Valid CreateUserCompanyDTO createUserCompanyDTO){
         companyService.createUserCompany(recordNumber, createUserCompanyDTO);
         return ResponseEntity.status(200).body(new APIResponse("Created account successfully"));

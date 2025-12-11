@@ -5,20 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fd6b5aa-ebd4-44d0-bb89-97d98f5863e6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/RequestTrainingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/CompanyAdminDTOIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/RequestTrainingDTOIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/TrainingDTOIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Training.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/CompanyAdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/RequestTrainingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/TrainingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/RequestTrainingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/TrainingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/AddSkillRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/AddSkillRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/SkillsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/SkillsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ManagerDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ManagerDTOIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/SkillsDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/SkillsDTOIn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/CompanyAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/CompanyAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/RequestTraining.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/RequestTraining.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Skills.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Skills.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/AddSkillRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/AddSkillRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyRequestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Advice/ControllerAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Advice/ControllerAdvice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Controller/CompanyRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Controller/CompanyRequestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Repository/CompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/SkillsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/SkillsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Company.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Manager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Skills.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Skills.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyRequestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyRequestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +45,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -99,6 +116,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

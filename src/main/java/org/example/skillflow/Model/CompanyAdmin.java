@@ -2,11 +2,16 @@ package org.example.skillflow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 
 @Entity
@@ -21,22 +26,22 @@ public class CompanyAdmin {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
 
-        @NotEmpty(message = "username must not be empty")
         @Column(columnDefinition = "varchar(40) not null unique")
         private String username;
 
-        @NotEmpty(message = "password must not be empty")
+        @Column(columnDefinition = "varchar(40) not null unique")
+         private String email;
+
         @Column(columnDefinition = "varchar(255) not null")
         private String password;
 
         @ManyToOne
         @JsonIgnore
+        @JoinColumn(name = "company_id")
         private Company company;
 
-
-//         @OneToMany(mappedBy = "companyAdmin")
-//         @JsonIgnore
-//         private Set<requestTraining> requestTraining;
+         @OneToMany(mappedBy = "companyAdmin")
+         private Set<RequestTraining> requestTraining;
 
 
 }

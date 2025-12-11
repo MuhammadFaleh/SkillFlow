@@ -6,33 +6,29 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Entity
 @Setter
-public class RequestTraining {
+@Getter
+public class Training {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(200) not null")
+    @Column(nullable = false , length = 200)
     private String name;
 
     @Column(nullable = false)
-    private String notes;
-
-    @Column(columnDefinition = "varchar(20) default 'PENDING'")
-    private String status;
-
-    private LocalDate createdAt;
+    private String description;
 
     @ManyToOne
     @JsonIgnore
-    private CompanyAdmin companyAdmin;
+    private Company company;
 
     @ManyToOne
     @JsonIgnore
-    private Employee employee;
+    private Skills skills;
 }

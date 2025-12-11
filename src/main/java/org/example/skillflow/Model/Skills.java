@@ -28,6 +28,9 @@ public class Skills {
     @OneToMany(mappedBy = "skills")
     private Set<AddSkillRequest> addSkillRequest;
 
+    @OneToMany(mappedBy = "skills")
+    private Set<Training> trainings;
+
     @ManyToOne
     @JsonIgnore
     private Company company;
