@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c40f78ac-3766-4e89-9acd-3f429eedb2aa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/NewSkillRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Model/NewSkillRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/NewSkillRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/NewSkillRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Model/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/skillflow/Service/CompanyService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,11 +65,20 @@
   "keyToString": {
     "Application.SkillflowApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Osama",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ACER/Desktop/capstone3/SkillFlow",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -65,7 +86,7 @@
       <recent name="org.example.skillflow.Model" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SkillflowApplication">
     <configuration name="SkillflowApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.skillflow.SkillflowApplication" />
       <module name="skillflow" />
@@ -79,11 +100,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SkillflowApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="skillflow" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.skillflow.SkillflowApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SkillflowApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,7 +128,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1765362933332</updated>
+      <workItem from="1765469005096" duration="154000" />
+      <workItem from="1765469174010" duration="9133000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

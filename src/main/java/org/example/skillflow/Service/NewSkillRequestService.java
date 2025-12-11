@@ -88,7 +88,7 @@ public class NewSkillRequestService {
     }
 
     public NewSkillRequest convertToEntity(NewSkillRequestDTOIn newSkillRequestDTOIn) {
-        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null,null,null);
+        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null,null,null,null);
     }
 
     public NewSkillRequestDTOOut convertToDTO(NewSkillRequest newSkillRequest) {

@@ -58,8 +58,5 @@ public class Employee {
     @JsonIgnore
     private Set<NewSkillRequest> newSkillRequests;
 
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private Set<NewSkillRequest> newSkillRequests;
 
 }

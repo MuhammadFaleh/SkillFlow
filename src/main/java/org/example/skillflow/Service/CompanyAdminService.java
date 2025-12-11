@@ -115,6 +115,37 @@ public class CompanyAdminService {
         request.setEnd_date(LocalDateTime.now());
         newSkillRequestRepository.save(request);
     }
+    public void rejectNewSkillRequest(Integer adminId, Integer requestId) {
+        CompanyAdmin companyAdmin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (companyAdmin == null) {
+            throw new APIException("company admin not found with id: " + adminId);
+        }
+
+        NewSkillRequest request = newSkillRequestRepository.findNewSkillRequestById(requestId);
+        if (request == null) {
+            throw new APIException("new skill request not found with id: " + requestId);
+        }
+
+        if (!request.getStatus().equalsIgnoreCase("pending")) {
+            throw new APIException("only pending requests can be rejected, current status: " + request.getStatus());
+        }
+
+        Employee employee = request.getEmployee();
+        if (employee == null || employee.getCompany() == null) {
+            throw new APIException("request employee or employee's company do not exist");
+        }
+
+        if (!companyAdmin.getCompany().getId().equals(employee.getCompany().getId())) {
+            throw new APIException("companyAdmin and employee do not have the same company");
+        }
+
+        request.setCompanyAdmin(companyAdmin);
+        request.setStatus("rejected");
+        request.setEnd_date(LocalDateTime.now());
+
+        newSkillRequestRepository.save(request);
+    }
+
 
     public CompanyAdmin convertToEntity(CompanyAdminDTOIn dtoIn) {
         return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getPassword(), null, null);

@@ -29,7 +29,7 @@ public class NewSkillRequest {
     @Column(columnDefinition = "text not null")
     private String description;
 
-    @Column(columnDefinition = "varchar(20) not null check('pending','approved','rejected')")
+    @Column(columnDefinition = "varchar(20)")
     private String status;
 
     @Column(columnDefinition = "timestamp not null")
@@ -55,4 +55,8 @@ public class NewSkillRequest {
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
     private Employee employee;
+
+    @ManyToOne
+    @JsonIgnore
+    private Company company;
 }
