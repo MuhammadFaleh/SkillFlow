@@ -30,19 +30,9 @@ public class NewSkillRequest {
 
     @ManyToOne
     @JsonIgnore
-    @JoinTable(
-            name = "company_skillsRequests",
-            joinColumns = @JoinColumn(name = "newSkillRequest_id"),
-            inverseJoinColumns = @JoinColumn(name = "companyAdmin_id ")
-    )
     private CompanyAdmin companyAdmin;
 
     @ManyToOne
     @JsonIgnore
-    @JoinTable(
-            name = "employee_skillsRequests",
-            joinColumns = @JoinColumn(name = "newSkillRequest_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id")
-    )
     private Employee employee;
 }
