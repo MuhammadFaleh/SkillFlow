@@ -18,22 +18,23 @@ import java.util.Set;
 @Setter
 public class CompanyAdmin {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
 
-    @NotEmpty(message = "username must not be empty")
-    @Column(columnDefinition = "varchar(40) not null unique")
-    private String username;
+        @NotEmpty(message = "username must not be empty")
+        @Column(columnDefinition = "varchar(40) not null unique")
+        private String username;
 
-    @NotEmpty(message = "password must not be empty")
-    @Column(columnDefinition = "varchar(255) not null")
-    private String password;
+        @NotEmpty(message = "password must not be empty")
+        @Column(columnDefinition = "varchar(255) not null")
+        private String password;
 
-    @ManyToOne
-    @JsonIgnore
-    private Company company;
+        @ManyToOne
+        @JsonIgnore
+        private Company company;
 
-    @OneToMany(mappedBy = "companyAdmin")
-    private Set<NewSkillRequest> newSkillRequests;
+        @OneToMany(mappedBy = "companyAdmin")
+        private Set<NewSkillRequest> newSkillRequests;
 }
+

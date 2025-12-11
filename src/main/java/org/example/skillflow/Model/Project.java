@@ -44,7 +44,7 @@ public class Project {
     @JsonIgnore
     private Set<ProjectManager> projectManagers;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToMany(mappedBy = "project")
     private Set<Employee> employees;
 
     @ManyToMany
