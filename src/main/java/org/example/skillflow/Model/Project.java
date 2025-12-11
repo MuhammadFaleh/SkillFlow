@@ -24,7 +24,7 @@ public class Project {
     @Column(columnDefinition = "varchar(255) not null")
     private String description;
 
-    @Column(columnDefinition = "varchar(30) not null check(status='pending' or status='approved' or status='in_progress'or status='rejected')")
+    @Column(columnDefinition = "varchar(30) not null check(status='pending' or status='approved' or status='in_progress'or status='competed' or status='rejected')")
     private String status;
 
     @Column(columnDefinition = "datetime default current_timestamp")
@@ -42,9 +42,14 @@ public class Project {
 
     @ManyToMany
     @JsonIgnore
+    @JoinTable(
+            name = "projectManager_projects",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "projectManager_Id")
+    )
     private Set<ProjectManager> projectManagers;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToMany(mappedBy = "project")
     private Set<Employee> employees;
 
     @ManyToMany(mappedBy = "projects")

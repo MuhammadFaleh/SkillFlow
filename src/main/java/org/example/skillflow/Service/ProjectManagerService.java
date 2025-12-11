@@ -117,6 +117,16 @@ public class ProjectManagerService {
             throw new APIException("this project is already assigned to this project manager with id: " + projectManagerId);
         }
 
+        int projectRisk = getRiskPercentageForProject(project);
+        int currentLoad = projectManager.getRisk_load() == null ? 0 : projectManager.getRisk_load();
+        int newRiskLoad = currentLoad + projectRisk;
+
+        if (newRiskLoad > 100) {
+            throw new APIException("cannot assign project: risk load would exceed 100 , current risk = " + currentLoad + ", project = " + projectRisk );
+        }
+
+        projectManager.setRisk_load(newRiskLoad);
+
         project.getProjectManagers().add(projectManager);
         projectManager.getProjects().add(project);
 
@@ -148,15 +158,32 @@ public class ProjectManagerService {
             throw new APIException("Manager with id: "+ projectManagerId+", is not assigned to this project");
         }
 
+        int projectRisk = getRiskPercentageForProject(project);
+        int currentLoad = projectManager.getRisk_load() == null ? 0 : projectManager.getRisk_load();
+        int newRiskLoad = currentLoad - projectRisk;
+
+
+        projectManager.setRisk_load(newRiskLoad);
+
         project.getProjectManagers().remove(projectManager);
         projectManager.getProjects().remove(project);
-
-
-
         projectManagerRepository.save(projectManager);
         projectRepository.save(project);
     }
 
+    private int getRiskPercentageForProject(Project project) {
+        if (project.getRisk() == null) {
+            return 0;
+        }
+
+        return switch (project.getRisk().toLowerCase()) {
+            case "low" -> 25;
+            case "medium" -> 50;
+            case "high" -> 75;
+            case "critical" -> 100;
+            default -> throw new APIException("invalid project risk value: " + project.getRisk());
+        };
+    }
 
     public ProjectManager convertToEntity(ProjectManagerDTOIn projectManagerDTOIn){
         return new ProjectManager(projectManagerDTOIn.getProject_Manager_id(),projectManagerDTOIn.getUsername(),projectManagerDTOIn.getPassword(),projectManagerDTOIn.getFull_name(),projectManagerDTOIn.getGender(),projectManagerDTOIn.getAge(), projectManagerDTOIn.getEmail(),projectManagerDTOIn.getRisk_load(),null, null);

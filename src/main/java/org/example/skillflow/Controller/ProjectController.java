@@ -55,4 +55,11 @@ public class ProjectController {
         return ResponseEntity.status(200).body(new APIResponse("skill with id: "+ skillId+", unassigned from project with id: " + projectId));
     }
 
+    @PutMapping("/complete/{projectId}/{companyId}")
+    public ResponseEntity<?> completeProject(@PathVariable Integer projectId,@PathVariable Integer companyId) {
+        projectService.completeProject(projectId, companyId);
+
+        return ResponseEntity.ok(new APIResponse("project completed with id: " + projectId));
+    }
+
 }

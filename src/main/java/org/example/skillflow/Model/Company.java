@@ -54,5 +54,12 @@ public class Company {
     private Set<Manager> manager;
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
-
+    @OneToMany(mappedBy = "company")
+    private Set<Project> projects;
+    @OneToMany(mappedBy = "company")
+    private Set<ProjectManager> projectManagers;
+    @OneToMany(mappedBy = "company")
+    private Set<CompanyAdmin> companyAdmins;
+    @OneToMany(mappedBy = "company")
+    private Set<NewSkillRequest> newSkillRequests;
 }

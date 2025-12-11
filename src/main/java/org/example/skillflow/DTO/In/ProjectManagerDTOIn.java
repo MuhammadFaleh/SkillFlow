@@ -43,8 +43,8 @@ public class ProjectManagerDTOIn {
             message = "please enter at least one number and special character")
     private String password;
 
-    @NotEmpty(message = "risk load is required ")
-    private String risk_load;
+    @NotNull(message = "risk load is required ")
+    private Integer risk_load;
 
 
 }
