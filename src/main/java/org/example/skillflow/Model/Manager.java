@@ -19,6 +19,7 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @Column(columnDefinition = "varchar(40) not null unique")
     private String username;
 
@@ -31,15 +32,16 @@ public class Manager {
     @Column(columnDefinition = "int not null check(age>20)")
     private Integer age;
 
-    @Column(columnDefinition = "varchar(200) not null")
+    @Column(columnDefinition = "varchar(200) not null unique")
     private String email;
 
-    @Column(columnDefinition = "varchar(255) not null")
+    @Column(columnDefinition = "varchar(254) not null")
     private String password;
 
     @ManyToOne
     @JsonIgnore
     private Company company;
+
 
     @OneToMany(mappedBy = "manager")
     private Set<Employee> employee;

@@ -1,8 +1,12 @@
 package org.example.skillflow.DTO.In;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.example.skillflow.vaildationGroups.ValidationGroup1;
 
 @Data
 @AllArgsConstructor
@@ -32,12 +36,12 @@ public class CompanyDTOIn {
     @NotBlank(message = "record number must be not empty")
     private String record_number;
 
-    @NotBlank(message = "country must be not empty")
-    @Size(min = 5, max = 50, message = "county length must be between 5 and 50 characters long")
+    @NotBlank(message = "country must be not empty",  groups = ValidationGroup1.class)
+    @Size(min = 4, max = 100, message = "county length must be between 4 and 100 characters long",  groups = ValidationGroup1.class)
     private String country;
 
-    @NotBlank(message = "industry must be not empty")
-    @Size(min = 5, max = 50, message = "industry length must be between 5 and 50 characters long")
+    @NotBlank(message = "industry must be not empty", groups = ValidationGroup1.class)
+    @Size(min = 4, max = 100, message = "industry length must be between 4 and 100 characters long", groups = ValidationGroup1.class)
     private String industry;
 
 }

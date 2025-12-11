@@ -21,7 +21,6 @@ import java.util.Set;
 @Setter
 public class CompanyAdmin {
 
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
@@ -45,3 +44,4 @@ public class CompanyAdmin {
 
 
 }
+

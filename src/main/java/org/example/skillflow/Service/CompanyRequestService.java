@@ -9,6 +9,7 @@ import org.example.skillflow.Repository.CompanyRequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,14 +26,14 @@ public class CompanyRequestService {
         CompanyRequest latestRequest = companyRequestRepository.findTheLatestRequest(companyRequest.getRecordNumber());
         if (latestRequest != null){
             if ("pending".equalsIgnoreCase(latestRequest.getStatus())){
-            throw new APIException("you have previous order is status pending");
+                throw new APIException("you have previous order is status pending");
             }
             if ("approved".equalsIgnoreCase(latestRequest.getStatus())){
-            throw new APIException("you have previous order is status approved");
+                throw new APIException("you have previous order is status approved");
             }
         }
         CompanyRequest companyRequest1 = convertToEntity(companyRequest);
-        companyRequest1.setRequestDate(LocalDate.now());
+        companyRequest1.setRequestDate(LocalDateTime.now());
         companyRequest1.setStatus("pending");
         companyRequestRepository.save(companyRequest1);
     }
@@ -48,21 +49,21 @@ public class CompanyRequestService {
             }
         }
 
-       CompanyRequest checked = companyRequestRepository.findCompanyRequestById(id);
-       if (checked == null){
-           throw new APIException("Company Request Not found");
-       }
-       if (!"pending".equalsIgnoreCase(checked.getStatus())){
-           throw new APIException("the request is not pending");
-       }
+        CompanyRequest checked = companyRequestRepository.findCompanyRequestById(id);
+        if (checked == null){
+            throw new APIException("Company Request Not found");
+        }
+        if (!"pending".equalsIgnoreCase(checked.getStatus())){
+            throw new APIException("the request is not pending");
+        }
 //       convert to entity
-       checked.setCompanyName(companyRequestDTOIn.getCompanyName());
-       checked.setCountry(companyRequestDTOIn.getCountry());
-       checked.setFullName(companyRequestDTOIn.getFullName());
-       checked.setIndustry(companyRequestDTOIn.getIndustry());
-       checked.setRecordNumber(companyRequestDTOIn.getRecordNumber());
+        checked.setCompanyName(companyRequestDTOIn.getCompanyName());
+        checked.setCountry(companyRequestDTOIn.getCountry());
+        checked.setFullName(companyRequestDTOIn.getFullName());
+        checked.setIndustry(companyRequestDTOIn.getIndustry());
+        checked.setRecordNumber(companyRequestDTOIn.getRecordNumber());
 
-       companyRequestRepository.save(checked);
+        companyRequestRepository.save(checked);
     }
 
     public void deleteCompanyRequest(Integer id){

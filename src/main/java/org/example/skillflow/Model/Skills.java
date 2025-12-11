@@ -15,6 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 public class Skills {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,6 +36,7 @@ public class Skills {
     @JsonIgnore
     private Company company;
 
+
     @ManyToMany
     @JoinTable(
             name = "employee_skills",
@@ -42,6 +44,15 @@ public class Skills {
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
     private Set<Employee> employee;
+
+
+    @ManyToMany(mappedBy = "skills")
+    @JsonIgnore
+    private Set<Project> projects;
+
+//    @OneToMany(mappedBy = "skills")
+//    private Set<NewSkillRequest> newSkillRequests;
+
 //    @ManyToMany()
 //    @JoinTable(
 //            name = "",
@@ -49,4 +60,5 @@ public class Skills {
 //            inverseJoinColumns = @JoinColumn(name = "")
 //    )
 //    private Set<Project> project;
+
 }

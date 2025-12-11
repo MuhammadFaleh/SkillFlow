@@ -15,7 +15,6 @@ import java.util.Set;
 @Setter
 @Entity
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,12 +34,14 @@ public class Employee {
     @Column(columnDefinition = "varchar(200)", unique = true, nullable = false)
     private String email;
 
-    @Column(columnDefinition = "varchar(255) not null")
+    @Column(columnDefinition = "varchar(254) not null")
     private String password;
 
+    @ManyToOne
+    @JsonIgnore
+    private Project project;
     @OneToMany(mappedBy = "employee")
     private Set<AddSkillRequest> addSkillRequests;
-
     @ManyToOne
     @JsonIgnore
     private Manager manager;
@@ -51,6 +52,9 @@ public class Employee {
 
     @ManyToMany(mappedBy = "employee")
     private Set<Skills> skills;
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<NewSkillRequest> newSkillRequests;
 
     @OneToMany(mappedBy = "employee")
     @JsonIgnore

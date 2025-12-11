@@ -1,21 +1,16 @@
 package org.example.skillflow.DTO.In;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class CompanyAdminDTOIn {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer companyAdminId;
+    private Integer companyAdmin_id;
 
     @NotBlank(message = "username must not be empty")
     @Size(min = 5, max = 200, message = "username length must be between 5 and 200 characters long")
@@ -32,6 +27,6 @@ public class CompanyAdminDTOIn {
             message = "please enter at least one number and special character")
     private String password;
 
-
-    public Integer companyID;
+    @NotNull(message = "company id must not be null")
+    private Integer company_id;
 }
