@@ -24,6 +24,7 @@ public class CompanyAdminService {
     private final CompanyRepository companyRepository;
     private final NewSkillRequestRepository newSkillRequestRepository;
     private final SkillsRepository skillsRepository;
+    private final ProjectRepository projectRepository;
     private final EmailService emailService;
 
     public List<CompanyAdminDTOOut> getCompanyAdmins() {
@@ -183,6 +184,96 @@ public class CompanyAdminService {
             newSkillRequestDTOOuts.add(new NewSkillRequestDTOOut(r.getId(), r.getName(), r.getDescription(), r.getStatus(), r.getStart_date(),r.getEnd_date()));
         }
         return newSkillRequestDTOOuts;
+    }
+
+    public void approveProject(Integer adminId, Integer projectId, Integer companyId) {
+
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (admin == null) throw new APIException("company admin not found with id: " + adminId);
+
+        Company company = companyRepository.findCompanyById(companyId);
+        if (company == null) throw new APIException("company not found with id: " + companyId);
+
+        if (!admin.getCompany().getId().equals(companyId)) {
+            throw new APIException("admin is not in this company");
+        }
+
+        Project project = projectRepository.findProjectById(projectId);
+        if (project == null) throw new APIException("project not found with id: " + projectId);
+
+        if (!project.getCompany().getId().equals(companyId)) {
+            throw new APIException("project is not in this company");
+        }
+
+        if (!project.getStatus().equalsIgnoreCase("pending")) {
+            throw new APIException("only pending projects can be approved, current status: " + project.getStatus());
+        }
+
+        project.setStatus("approved");
+        projectRepository.save(project);
+    }
+
+
+    public void startProject(Integer adminId, Integer projectId, Integer companyId) {
+
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (admin == null) throw new APIException("company admin not found with id: " + adminId);
+
+        Company company = companyRepository.findCompanyById(companyId);
+        if (company == null) throw new APIException("company not found with id: " + companyId);
+
+        if (!admin.getCompany().getId().equals(companyId)) {
+            throw new APIException("admin is not in this company");
+        }
+
+        Project project = projectRepository.findProjectById(projectId);
+        if (project == null) throw new APIException("project not found with id: " + projectId);
+
+        if (!project.getCompany().getId().equals(companyId)) {
+            throw new APIException("project is not in this company");
+        }
+
+        if (!project.getStatus().equalsIgnoreCase("approved")) {
+            throw new APIException("only approved projects can be started, current status: " + project.getStatus());
+        }
+
+        project.setStatus("in_progress");
+
+        if (project.getStart_date() == null) {
+            project.setStart_date(LocalDateTime.now());
+        }
+
+        projectRepository.save(project);
+    }
+
+
+    public void rejectProject(Integer adminId, Integer projectId, Integer companyId) {
+
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (admin == null) throw new APIException("company admin not found with id: " + adminId);
+
+        Company company = companyRepository.findCompanyById(companyId);
+        if (company == null) throw new APIException("company not found with id: " + companyId);
+
+        if (!admin.getCompany().getId().equals(companyId)) {
+            throw new APIException("admin is not in this company");
+        }
+
+        Project project = projectRepository.findProjectById(projectId);
+        if (project == null) throw new APIException("project not found with id: " + projectId);
+
+        if (!project.getCompany().getId().equals(companyId)) {
+            throw new APIException("project is not in this company");
+        }
+
+        if (!project.getStatus().equalsIgnoreCase("pending")) {
+            throw new APIException("only pending projects can be rejected, current status: " + project.getStatus());
+        }
+
+        project.setStatus("rejected");
+        project.setEnd_date(LocalDateTime.now());
+        projectRepository.save(project);
+
     }
 
     public CompanyAdmin convertToEntity(CompanyAdminDTOIn dtoIn) {

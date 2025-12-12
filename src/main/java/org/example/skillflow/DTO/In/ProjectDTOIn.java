@@ -28,10 +28,8 @@ public class ProjectDTOIn {
     @Pattern(regexp = "(?i)^(pending|approved|in_progress|completed|rejected)$")
     private String status;
 
-    @NotNull(message = "start date cannot be null")
     private LocalDateTime start_date;
 
-    @NotNull(message = "end date cannot be null")
     private LocalDateTime end_date;
 
     @Pattern(regexp = "(?i)^(low|medium|high|critical)$")

@@ -25,7 +25,7 @@ public class CompanyAdminController {
     @PostMapping("/add")
     public ResponseEntity<?> addCompanyAdmin(@RequestBody @Valid CompanyAdminDTOIn companyAdminDTOIn) {
         companyAdminService.createCompanyAdmin(companyAdminDTOIn);
-        return ResponseEntity.status(200).body(new APIResponse("company admin has been created with id: "+ companyAdminDTOIn.getCompanyAdmin_id()));
+        return ResponseEntity.status(200).body(new APIResponse("company admin has been created with username: "+ companyAdminDTOIn.getUsername()));
     }
 
     @PutMapping("/update/{id}")
@@ -41,6 +41,26 @@ public class CompanyAdminController {
         return ResponseEntity.status(200).body(new APIResponse("company admin has been deleted with id: "+ id));
     }
 
+    @PutMapping("/approve-project/{adminId}/{projectId}/{companyId}")
+    public ResponseEntity<?> approveProject(@PathVariable Integer adminId,@PathVariable Integer projectId,@PathVariable Integer companyId) {
+        companyAdminService.approveProject(adminId, projectId, companyId);
+
+        return ResponseEntity.status(200).body(new APIResponse("project approved: " + projectId));
+    }
+
+    @PutMapping("/start-project/{adminId}/{projectId}/{companyId}")
+    public ResponseEntity<?> startProject(@PathVariable Integer adminId,@PathVariable Integer projectId,@PathVariable Integer companyId) {
+        companyAdminService.startProject(adminId, projectId, companyId);
+
+        return ResponseEntity.status(200).body(new APIResponse("project started (in_progress): " + projectId));
+    }
+
+    @PutMapping("/reject-project/{adminId}/{projectId}/{companyId}")
+    public ResponseEntity<?> rejectProject(@PathVariable Integer adminId,@PathVariable Integer projectId,@PathVariable Integer companyId) {
+        companyAdminService.rejectProject(adminId, projectId, companyId);
+
+        return ResponseEntity.status(200).body(new APIResponse("project rejected: " + projectId));
+    }
 
     @PostMapping("/approve-new-skill/{CompanyAdminId}/{requestId}")
     public ResponseEntity<?> approveNewSkill(@PathVariable Integer CompanyAdminId, @PathVariable Integer requestId) {
@@ -64,4 +84,5 @@ public class CompanyAdminController {
     public ResponseEntity<?> getAdminPendingRequests(@PathVariable Integer CompanyAdminId) {
         return ResponseEntity.status(200).body(companyAdminService.getPendingNewSkillRequestsForAdmin(CompanyAdminId));
     }
+
 }

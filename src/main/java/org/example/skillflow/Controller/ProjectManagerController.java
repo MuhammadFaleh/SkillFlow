@@ -24,7 +24,7 @@ public class ProjectManagerController {
     public ResponseEntity<?> addProjectManager(@RequestBody @Valid ProjectManagerDTOIn projectManagerDTOIn) {
         projectManagerService.createProjectManager(projectManagerDTOIn);
 
-        return ResponseEntity.status(200).body(new APIResponse("project manager has been created with id: " + projectManagerDTOIn.getProject_Manager_id()));
+        return ResponseEntity.status(200).body(new APIResponse("project manager has been created with username: " + projectManagerDTOIn.getUsername()));
     }
 
     @PutMapping("/update/{id}")

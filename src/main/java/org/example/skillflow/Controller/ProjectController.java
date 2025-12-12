@@ -24,7 +24,7 @@ public class ProjectController {
     public ResponseEntity<?> addProject(@RequestBody @Valid ProjectDTOIn projectDTOIn) {
         projectService.createProject(projectDTOIn);
 
-        return ResponseEntity.status(200).body(new APIResponse("project created successfully with id: " + projectDTOIn.getProject_id()));
+        return ResponseEntity.status(200).body(new APIResponse("project created successfully"));
     }
 
     @PutMapping("/update/{projectId}")

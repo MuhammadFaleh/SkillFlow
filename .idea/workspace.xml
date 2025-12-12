@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c40f78ac-3766-4e89-9acd-3f429eedb2aa" name="Changes" comment="" />
+    <list default="true" id="c40f78ac-3766-4e89-9acd-3f429eedb2aa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/CompanyAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ProjectDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ProjectDTOIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/CompanyAdminService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +124,7 @@
       <workItem from="1765469005096" duration="154000" />
       <workItem from="1765469174010" duration="11143000" />
       <workItem from="1765490760747" duration="6965000" />
-      <workItem from="1765546360425" duration="803000" />
+      <workItem from="1765546360425" duration="5408000" />
     </task>
     <servers />
   </component>
