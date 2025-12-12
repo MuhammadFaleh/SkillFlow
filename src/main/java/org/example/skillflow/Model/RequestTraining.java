@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -23,10 +24,11 @@ public class RequestTraining {
     @Column(nullable = false)
     private String notes;
 
+
     @Column(columnDefinition = "varchar(20) default 'PENDING'")
     private String status;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JsonIgnore
@@ -35,4 +37,5 @@ public class RequestTraining {
     @ManyToOne
     @JsonIgnore
     private Employee employee;
+
 }

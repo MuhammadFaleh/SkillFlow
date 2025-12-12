@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/companyAdmin")
+@RequestMapping("/api/v1/company-admin")
 @RequiredArgsConstructor
 public class CompanyAdminController {
 
     private final CompanyAdminService companyAdminService;
 
-    @GetMapping("/get")
+    @GetMapping("/get-company-admin")
     public ResponseEntity<?> getCompanyAdmins() {
         return ResponseEntity.status(200).body(companyAdminService.getCompanyAdmins());
     }
@@ -35,14 +35,19 @@ public class CompanyAdminController {
     @DeleteMapping("/delete/{id}/{companyId}")
     public ResponseEntity<?> deleteCompanyAdmin(@PathVariable Integer id, @PathVariable Integer companyId) {
         companyAdminService.deleteCompanyAdmin(id ,companyId);
-
         return ResponseEntity.status(200).body(new APIResponse("company admin has been deleted with id: "+ id));
     }
-
 
     @PostMapping("/approve-new-skill/{CompanyAdminId}/{requestId}")
     public ResponseEntity<?> approveNewSkill(@PathVariable Integer CompanyAdminId, @PathVariable Integer requestId) {
         companyAdminService.approveNewSkillRequest(CompanyAdminId , requestId);
         return ResponseEntity.status(200).body(new APIResponse("skill request with id: "+ requestId+", has been approved and added to skills"));
     }
+
+    @PostMapping("/approve-training-request/{CompanyAdminId}/{requestId}")
+    public ResponseEntity<?> approveTrainingRequest(@PathVariable Integer CompanyAdminId, @PathVariable Integer requestId) {
+        companyAdminService.approvedTraining(CompanyAdminId , requestId);
+        return ResponseEntity.status(200).body(new APIResponse("training request with id: "+ requestId+", has been approved and added to Training"));
+    }
+
 }

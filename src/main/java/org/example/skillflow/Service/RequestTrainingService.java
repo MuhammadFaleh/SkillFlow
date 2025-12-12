@@ -9,7 +9,7 @@ import org.example.skillflow.Repository.EmployeeRepository;
 import org.example.skillflow.Repository.RequestTrainingRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,30 +17,64 @@ import java.util.List;
 public class RequestTrainingService {
 
     private final RequestTrainingRepository requestTrainingRepository;
-
     private final EmployeeRepository employeeRepository;
 
     public List<RequestTraining> getRequestTraining(){
         return requestTrainingRepository.findAll();
     }
 
+
+
     public void addRequestTraining(RequestTrainingDTOIn requestTrainingDTOIn){
         Employee employee = employeeRepository.findEmployeeById(requestTrainingDTOIn.getEmployee_id());
+        RequestTraining lastRequestEmployee = requestTrainingRepository.findTheLatestRequest(requestTrainingDTOIn.getEmployee_id());
+        if (lastRequestEmployee != null){
+            if (lastRequestEmployee.getName().equalsIgnoreCase(requestTrainingDTOIn.getName())
+                    || lastRequestEmployee.getNotes().equalsIgnoreCase(requestTrainingDTOIn.getNotes()) ){
+                throw new APIException("request it's already created");
+            }
+        }
+
         if (employee == null){
             throw new APIException("employee does't exist");
         }
         RequestTraining requestTraining = convertToEntity(requestTrainingDTOIn);
         requestTraining.setStatus("pending");
-        requestTraining.setCreatedAt(LocalDate.now());
+        requestTraining.setCreatedAt(LocalDateTime.now());
         requestTraining.setEmployee(employee);
 
         requestTrainingRepository.save(requestTraining);
     }
 
-    public void updateRequestTraining(Integer requestTrainingId , RequestTrainingDTOIn requestTrainingDTOIn){
 
+    public void updateRequestTraining(Integer requestTrainingId , RequestTrainingDTOIn requestTrainingDTOIn){
+        RequestTraining requestTraining = requestTrainingRepository.findRequestTrainingById(requestTrainingId);
+        if (requestTraining == null){
+            throw new APIException("request training does't exist");
+        }
+        if (!"pending".equalsIgnoreCase(requestTraining.getStatus())){
+            throw new APIException("unable to update request, it's already checked");
+        }
+        requestTraining = convertToEntity(requestTrainingDTOIn);
+        requestTraining.setName(requestTrainingDTOIn.getName());
+        requestTraining.setNotes(requestTrainingDTOIn.getNotes());
+        requestTrainingRepository.save(requestTraining);
     }
+
+    public void deleteRequestTraining(Integer requestTrainingId){
+        RequestTraining requestTraining = requestTrainingRepository.findRequestTrainingById(requestTrainingId);
+        if (requestTraining == null){
+            throw new APIException("request training not found");
+        }
+        if (!"pending".equalsIgnoreCase(requestTraining.getStatus())){
+            throw new APIException("unable to deleted request, it's already checked");
+        }
+        requestTrainingRepository.delete(requestTraining);
+    }
+
+
+
     public RequestTraining convertToEntity(RequestTrainingDTOIn requestTrainingDTOIn){
-        return new RequestTraining(requestTrainingDTOIn.getRequestTrainingId() , requestTrainingDTOIn.getName() , requestTrainingDTOIn.getNotes() , null , LocalDate.now() , null , null);
+        return new RequestTraining(requestTrainingDTOIn.getRequestTrainingId() , requestTrainingDTOIn.getName() , requestTrainingDTOIn.getNotes() , null , LocalDateTime.now() , null , null);
     }
 }

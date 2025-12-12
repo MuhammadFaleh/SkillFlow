@@ -26,13 +26,13 @@ public class AddSkillRequest {
     @Column(columnDefinition = "timestamp")
     private LocalDateTime end_date;
 
-    @Column(columnDefinition = "varchar(10) not null check(status = 'pending' or status='approved' or status='rejected')")
+    @Column(columnDefinition = "varchar(10) not null")
     private String status;
 
-    @Column(columnDefinition = "text not null check(length(description) <=300)")
+    @Column(columnDefinition = "text not null ")
     private String description;
 
-    @Column(columnDefinition = "text check(length(notes) <=300)")
+    @Column(columnDefinition = "text")
     private String notes;
 
     @ManyToOne

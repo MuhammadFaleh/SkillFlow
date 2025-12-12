@@ -59,4 +59,5 @@ public class EmployeeController {
     public ResponseEntity<?> getEmployeesByCompanyId(@PathVariable Integer companyId){
         return ResponseEntity.status(200).body(employeeService.getEmployeesByCompanyId(companyId));
     }
+
 }
