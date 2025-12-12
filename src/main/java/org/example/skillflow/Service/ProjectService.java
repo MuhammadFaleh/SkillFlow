@@ -212,6 +212,9 @@ public class ProjectService {
 
         employeeRepository.save(employee);
         projectRepository.save(project);
+
+        //for testing later
+        //emailService.sendEmail(employee.getEmail(), "Request approved", "Your request with id: "+requestId+ ", has been approved");
     }
 
 

@@ -24,6 +24,7 @@ public class ProjectManagerService {
     private final CompanyRepository companyRepository;
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
+    private final EmailService emailService;
 
     public List<ProjectManagerDTOOut> getProjectManagers(){
         List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
@@ -134,6 +135,10 @@ public class ProjectManagerService {
 
         projectManagerRepository.save(projectManager);
         projectRepository.save(project);
+
+        //for testing later
+//        emailService.sendEmail(projectManager.getEmail(), "You have been assign to a project", "You have been assign to a project with id: "+ projectId+
+//                ", project details: " +project.getDescription() + ", project risk, "+ project.getRisk() + ", project status: "+ project.getStatus());
     }
 
     public void unassignProjectFromManager(Integer projectManagerId, Integer projectId, Integer companyId) {

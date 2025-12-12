@@ -118,8 +118,9 @@ public class CompanyAdminService {
         request.setEnd_date(LocalDateTime.now());
         newSkillRequestRepository.save(request);
 
-        //for testing later
-        //emailService.sendEmail(employee.getEmail(), "Request approved", "Your request with id: "+requestId+ ", has been approved");
+//        for testing later
+//        emailService.sendEmail(employee.getEmail(), "New skill Request approved", "Your request with id: "+requestId+ ", has been approved, skill: "
+//                + skill.getName()+", has been added to the company skills");
     }
     public void rejectNewSkillRequest(Integer adminId, Integer requestId) {
         CompanyAdmin companyAdmin = companyAdminRepository.findCompanyAdminById(adminId);
@@ -152,7 +153,7 @@ public class CompanyAdminService {
         newSkillRequestRepository.save(request);
 
         //for testing later
-        //emailService.sendEmail(employee.getEmail(), "Request Rejected", "Your request with id: "+requestId+ ", has been rejected");
+        //emailService.sendEmail(employee.getEmail(), "New skill Request Rejected", "Your request with id: "+requestId+ ", has been rejected");
     }
 
     public List<NewSkillRequestDTOOut> getNewSkillRequestsForAdmin(Integer adminId) {
