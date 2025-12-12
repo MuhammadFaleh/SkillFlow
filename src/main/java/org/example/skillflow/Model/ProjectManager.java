@@ -38,19 +38,14 @@ public class ProjectManager {
     @Column(columnDefinition = "varchar(200) unique not null")
     private String email;
 
-    @Column(columnDefinition = "int not null check(risk_load ='low' or risk_load ='medium' or risk_load ='high' or risk_load ='critical' )")
-    private String risk_load;
+    @Column(columnDefinition = "int")
+    private Integer risk_load;
 
     @ManyToOne
     @JsonIgnore
     private Company company;
 
-    @ManyToMany
-    @JoinTable(
-            name = "projectManager_projects",
-            joinColumns = @JoinColumn(name = "projectManager_Id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id")
-    )
+    @ManyToMany(mappedBy = "projectManagers")
     private Set<Project> projects;
 
 

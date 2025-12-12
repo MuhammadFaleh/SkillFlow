@@ -2,6 +2,7 @@ package org.example.skillflow.Repository;
 
 import org.example.skillflow.Model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,9 @@ public interface ProjectRepository extends JpaRepository<Project,Integer> {
     List<Project> findProjectByCompanyIdAndSkillsId(Integer id, Integer skill);
     Project findProjectByCompanyIdAndEmployeesId(Integer id, Integer employee);
 
+    @Query("select p from Project p where p.company.id = ?1 and lower(p.status) = lower(?2)")
+    List<Project> findByCompanyIdAndStatus(Integer companyId, String status);
+
+    @Query("select p from Project p where p.company.id = ?1 and lower(p.risk) = lower(?2)")
+    List<Project> findByCompanyIdAndRisk(Integer companyId, String riskLevel);
 }

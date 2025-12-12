@@ -14,7 +14,7 @@ public class ProjectManagerDTOOut {
     private String gender;
     private Integer age;
     private String email;
-    private String risk_load;
+    private Integer risk_load;
     private Integer company_id;
 }
 

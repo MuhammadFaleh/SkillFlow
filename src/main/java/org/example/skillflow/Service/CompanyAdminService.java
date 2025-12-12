@@ -183,7 +183,7 @@ public class CompanyAdminService {
         requestTrainingRepository.save(requestTraining);
     }
     public CompanyAdmin convertToEntity(CompanyAdminDTOIn dtoIn) {
-        return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getEmail(), dtoIn.getPassword()  , null , null);
+        return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getEmail(), dtoIn.getPassword()  ,null, null , null);
     }
 
     public CompanyAdminDTOOut convertToDTO(CompanyAdmin admin) {

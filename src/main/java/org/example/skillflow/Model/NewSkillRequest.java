@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
+
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,8 +29,14 @@ public class NewSkillRequest {
     @Column(columnDefinition = "text not null")
     private String description;
 
-    @Column(columnDefinition = "varchar(20) not null ")
+    @Column(columnDefinition = "varchar(20)")
     private String status;
+
+    @Column(columnDefinition = "timestamp not null")
+    private LocalDateTime start_date;
+
+    @Column(columnDefinition = "timestamp")
+    private LocalDateTime end_date;
 
     @ManyToOne
     @JsonIgnore
@@ -35,4 +45,8 @@ public class NewSkillRequest {
     @ManyToOne
     @JsonIgnore
     private Employee employee;
+
+    @ManyToOne
+    @JsonIgnore
+    private Company company;
 }

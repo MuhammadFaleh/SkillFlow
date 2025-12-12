@@ -39,12 +39,11 @@ public class ProjectManagerDTOIn {
 
     @NotBlank(message = "password must not be empty")
     @Size(min = 8, max = 40, message = "password length must be between 8 and 40 characters long")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$&+,:;=?@#|'<>.^*()%!-]).*$",
+    @Pattern(regexp = "^(?=.[A-Za-z])(?=.[0-9])(?=.[$&+,:;=?@#|'<>.^()%!-]).$",
             message = "please enter at least one number and special character")
     private String password;
 
-    @NotEmpty(message = "risk load is required ")
-    private String risk_load;
+    private Integer risk_load;
 
 
 }

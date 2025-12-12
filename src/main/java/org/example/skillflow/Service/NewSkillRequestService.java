@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.NewSkillRequestDTOIn;
 import org.example.skillflow.DTO.Out.NewSkillRequestDTOOut;
+import org.example.skillflow.Model.CompanyAdmin;
 import org.example.skillflow.Model.Employee;
 import org.example.skillflow.Model.NewSkillRequest;
 import org.example.skillflow.Repository.EmployeeRepository;
 import org.example.skillflow.Repository.NewSkillRequestRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +39,17 @@ public class NewSkillRequestService {
             throw new APIException("employee not found with id: " + newSkillRequestDTOIn.getEmployee_id());
         }
 
+
         NewSkillRequest newSkillRequest = convertToEntity(newSkillRequestDTOIn);
         newSkillRequest.setEmployee(employee);
+
+        employee.getNewSkillRequests().add(newSkillRequest);
+        employeeRepository.save(employee);
+
         newSkillRequest.setCompanyAdmin(null);
         newSkillRequest.setStatus("pending");
-
+        newSkillRequest.setStart_date(LocalDateTime.now());
+        newSkillRequest.setEnd_date(null);
         newSkillRequestRepository.save(newSkillRequest);
 
     }
@@ -70,14 +78,60 @@ public class NewSkillRequestService {
             throw new APIException("only pending requests can be deleted: current status: " + newSkillRequest.getStatus());
         }
 
+        Employee employee = newSkillRequest.getEmployee();
+        if (employee != null && employee.getNewSkillRequests() != null) {
+
+            employee.getNewSkillRequests().remove(newSkillRequest);
+        }
+
+        CompanyAdmin companyAdmin = newSkillRequest.getCompanyAdmin();
+        if (companyAdmin != null && companyAdmin.getNewSkillRequests() != null) {
+            companyAdmin.getNewSkillRequests().remove(newSkillRequest);
+        }
+
         newSkillRequestRepository.delete(newSkillRequest);
     }
 
+    public List<NewSkillRequestDTOOut> getRequestsByEmployee(Integer employeeId) {
+        List<NewSkillRequest> newSkillRequests = newSkillRequestRepository.findByEmployeeId(employeeId);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : newSkillRequests) {
+            newSkillRequestDTOOuts.add(convertToDTO(r));
+        }
+
+        return newSkillRequestDTOOuts;
+    }
+
+    public List<NewSkillRequestDTOOut> getRequestsByEmployeeAndStatus(Integer employeeId, String status) {
+        List<NewSkillRequest> newSkillRequests = newSkillRequestRepository.findByEmployeeIdAndStatus(employeeId, status);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : newSkillRequests) {
+            newSkillRequestDTOOuts.add(convertToDTO(r));
+        }
+
+        return newSkillRequestDTOOuts;
+    }
+
+    public NewSkillRequestDTOOut getRequestById(Integer requestId) {
+        NewSkillRequest newSkillRequest = newSkillRequestRepository.findNewSkillRequestById(requestId);
+
+        if (newSkillRequest == null) {
+            throw new APIException("new skill request not found with id: " + requestId);
+        }
+
+        return convertToDTO(newSkillRequest);
+    }
+
     public NewSkillRequest convertToEntity(NewSkillRequestDTOIn newSkillRequestDTOIn) {
-        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null);
+        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null,null,null,null);
     }
 
     public NewSkillRequestDTOOut convertToDTO(NewSkillRequest newSkillRequest) {
-        return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus());
+        if (newSkillRequest.getCompanyAdmin() == null){
+            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,null, newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
+        }
+        return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,newSkillRequest.getCompanyAdmin().getId(), newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
     }
 }
