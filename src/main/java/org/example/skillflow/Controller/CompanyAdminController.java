@@ -1,6 +1,5 @@
 package org.example.skillflow.Controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIResponse;
 import org.example.skillflow.DTO.In.CompanyAdminDTOIn;
