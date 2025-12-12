@@ -68,7 +68,7 @@ public class ProjectController {
         return ResponseEntity.status(200).body(new APIResponse("employee with id: "+ employeeId+  ",has been assigned to project: "+ projectId ));
     }
 
-    @PutMapping("/unassign-employee{projectId}/{employeeId}/{companyId}")
+    @PutMapping("/unassign-employee/{projectId}/{employeeId}/{companyId}")
     public ResponseEntity<?> unassignEmployeeFromProject(@PathVariable Integer projectId,@PathVariable Integer employeeId, @PathVariable Integer companyId) {
         projectService.unassignEmployeeFromProject(projectId, employeeId, companyId);
         return ResponseEntity.status(200).body(new APIResponse("employee with id: "+ employeeId+  ",has been unassigned to project: "+ projectId));
