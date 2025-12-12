@@ -61,7 +61,6 @@ public class ProjectService {
         }
 
         oldProject.setDescription(projectDTOIn.getDescription());
-        oldProject.setStatus(projectDTOIn.getStatus());
         oldProject.setStart_date(projectDTOIn.getStart_date());
         oldProject.setEnd_date(projectDTOIn.getEnd_date());
         oldProject.setRisk(projectDTOIn.getRisk());
@@ -353,7 +352,7 @@ public class ProjectService {
 
     }
     public Project convertToEntity(ProjectDTOIn projectDTOIn) {
-        return new Project(projectDTOIn.getProject_id(), projectDTOIn.getDescription(), projectDTOIn.getStatus(), projectDTOIn.getStart_date(), projectDTOIn.getEnd_date(), projectDTOIn.getRisk(),
+        return new Project(projectDTOIn.getProject_id(), projectDTOIn.getDescription(), null, projectDTOIn.getStart_date(), projectDTOIn.getEnd_date(), projectDTOIn.getRisk(),
                 null, null, null, null );
     }
 
