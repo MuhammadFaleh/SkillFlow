@@ -38,7 +38,7 @@ public class ProjectManager {
     @Column(columnDefinition = "varchar(200) unique not null")
     private String email;
 
-    @Column(columnDefinition = "int not null")
+    @Column(columnDefinition = "int")
     private Integer risk_load;
 
     @ManyToOne
