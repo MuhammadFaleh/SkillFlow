@@ -37,4 +37,20 @@ public class NewSkillRequestController {
         newSkillRequestService.deleteNewSkillRequest(id);
         return ResponseEntity.status(200).body(new APIResponse("new skill request has been deleted with id: " + id));
     }
+
+
+    @GetMapping("/employee/{employeeId}")
+    public ResponseEntity<?> getRequestsByEmployee(@PathVariable Integer employeeId) {
+        return ResponseEntity.status(200).body(newSkillRequestService.getRequestsByEmployee(employeeId));
+    }
+
+    @GetMapping("/employee/{employeeId}/status/{status}")
+    public ResponseEntity<?> getRequestsByEmployeeAndStatus(@PathVariable Integer employeeId,@PathVariable String status) {
+        return ResponseEntity.status(200).body(newSkillRequestService.getRequestsByEmployeeAndStatus(employeeId,status));
+    }
+
+    @GetMapping("/get-request/{requestId}")
+    public ResponseEntity<?> getRequestById(@PathVariable Integer requestId) {
+        return ResponseEntity.status(200).body(newSkillRequestService.getRequestById(requestId));
+    }
 }

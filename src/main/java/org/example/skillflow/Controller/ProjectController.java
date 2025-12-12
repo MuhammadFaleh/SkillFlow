@@ -74,4 +74,26 @@ public class ProjectController {
         return ResponseEntity.status(200).body(new APIResponse("employee with id: "+ employeeId+  ",has been unassigned to project: "+ projectId));
     }
 
+    @GetMapping("/get-project/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable Integer projectId) {
+
+        return ResponseEntity.status(200).body(projectService.getProjectById(projectId));
+    }
+
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<?> getProjectsByCompany(@PathVariable Integer companyId) {
+
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompany(companyId));
+    }
+
+    @GetMapping("/company-by-status/{companyId}/{status}")
+    public ResponseEntity<?> getProjectsByCompanyAndStatus(@PathVariable Integer companyId,@PathVariable String status) {
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompanyAndStatus(companyId,status));
+    }
+
+    @GetMapping("/company-by-risk/{companyId}/{riskLevel}")
+    public ResponseEntity<?> getProjectsByCompanyAndRisk(@PathVariable Integer companyId ,@PathVariable String riskLevel) {
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompanyAndRisk(companyId,riskLevel));
+    }
+
 }

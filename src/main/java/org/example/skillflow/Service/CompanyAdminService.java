@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.CompanyAdminDTOIn;
 import org.example.skillflow.DTO.Out.CompanyAdminDTOOut;
+import org.example.skillflow.DTO.Out.NewSkillRequestDTOOut;
 import org.example.skillflow.Model.*;
 import org.example.skillflow.Repository.*;
 import org.example.skillflow.Repository.CompanyRepository;
@@ -23,6 +24,7 @@ public class CompanyAdminService {
     private final CompanyRepository companyRepository;
     private final NewSkillRequestRepository newSkillRequestRepository;
     private final SkillsRepository skillsRepository;
+    private final EmailService emailService;
 
     public List<CompanyAdminDTOOut> getCompanyAdmins() {
         List<CompanyAdminDTOOut> companyAdminDTOOuts = new ArrayList<>();
@@ -114,6 +116,9 @@ public class CompanyAdminService {
         request.setStatus("approved");
         request.setEnd_date(LocalDateTime.now());
         newSkillRequestRepository.save(request);
+
+        //for testing later
+        //emailService.sendEmail(employee.getEmail(), "Request approved", "Your request with id: "+requestId+ ", has been approved");
     }
     public void rejectNewSkillRequest(Integer adminId, Integer requestId) {
         CompanyAdmin companyAdmin = companyAdminRepository.findCompanyAdminById(adminId);
@@ -144,8 +149,41 @@ public class CompanyAdminService {
         request.setEnd_date(LocalDateTime.now());
 
         newSkillRequestRepository.save(request);
+
+        //for testing later
+        //emailService.sendEmail(employee.getEmail(), "Request Rejected", "Your request with id: "+requestId+ ", has been rejected");
     }
 
+    public List<NewSkillRequestDTOOut> getNewSkillRequestsForAdmin(Integer adminId) {
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (admin == null) {
+            throw new APIException("company admin not found with id: " + adminId);
+        }
+
+        List<NewSkillRequest> requests = newSkillRequestRepository.findByCompanyAdminId(adminId);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : requests) {
+            newSkillRequestDTOOuts.add(new NewSkillRequestDTOOut(r.getId(), r.getName(), r.getDescription(), r.getStatus(), r.getStart_date(),r.getEnd_date()));
+        }
+        return newSkillRequestDTOOuts;
+    }
+
+    public List<NewSkillRequestDTOOut> getPendingNewSkillRequestsForAdmin(Integer adminId) {
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(adminId);
+        if (admin == null) {
+
+            throw new APIException("company admin not found with id: " + adminId);
+        }
+
+        List<NewSkillRequest> requests = newSkillRequestRepository.findPendingByCompanyAdminId(adminId);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : requests) {
+            newSkillRequestDTOOuts.add(new NewSkillRequestDTOOut(r.getId(), r.getName(), r.getDescription(), r.getStatus(), r.getStart_date(),r.getEnd_date()));
+        }
+        return newSkillRequestDTOOuts;
+    }
 
     public CompanyAdmin convertToEntity(CompanyAdminDTOIn dtoIn) {
         return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getPassword(), null, null);

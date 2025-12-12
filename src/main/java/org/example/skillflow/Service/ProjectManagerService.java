@@ -173,6 +173,37 @@ public class ProjectManagerService {
         projectRepository.save(project);
     }
 
+    public ProjectManagerDTOOut getProjectManagerById(Integer id) {
+        ProjectManager projectManager = projectManagerRepository.findProjectManagerById(id);
+        if (projectManager == null) {
+            throw new APIException("project manager not found with id: " + id);
+        }
+        return convertToDTO(projectManager);
+    }
+
+    public List<ProjectManagerDTOOut> getProjectManagersByCompany(Integer companyId) {
+        List<ProjectManager> managers = projectManagerRepository.findByCompanyId(companyId);
+        List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
+
+        for (ProjectManager p : managers) {
+            projectManagerDTOOuts.add(convertToDTO(p));
+        }
+
+        return projectManagerDTOOuts;
+    }
+
+    public List<ProjectManagerDTOOut> getProjectManagersByCompanyAndRiskOver(Integer companyId, Integer limit) {
+        List<ProjectManager> managers = projectManagerRepository.findByCompanyIdAndRiskLoadGreaterThanEqual(companyId, limit);
+        List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
+
+        for (ProjectManager pm : managers) {
+            projectManagerDTOOuts.add(convertToDTO(pm));
+        }
+
+        return projectManagerDTOOuts;
+    }
+
+
     private int getRiskPercentageForProject(Project project) {
         if (project.getRisk() == null) {
             return 0;

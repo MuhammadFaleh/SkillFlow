@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyAdminController {
 
     private final CompanyAdminService companyAdminService;
-    private final EmailService emailService;
+
 
     @GetMapping("/get")
     public ResponseEntity<?> getCompanyAdmins() {
@@ -51,7 +51,17 @@ public class CompanyAdminController {
     @PutMapping("/reject-new-skill/{CompanyAdminId}/{requestId}")
     public ResponseEntity<?> rejectNewSkill(@PathVariable Integer CompanyAdminId, @PathVariable Integer requestId) {
         companyAdminService.rejectNewSkillRequest(CompanyAdminId, requestId);
-        //emailService.sendEmail( , "Request rejected", "Your request with id: "+requestId+ ", has been rejected");
+
         return ResponseEntity.status(200).body(new APIResponse("skill request with id: "+ requestId+", has been rejected"));
+    }
+
+    @GetMapping("/new-skill-requests/{CompanyAdminId}")
+    public ResponseEntity<?> getAdminNewSkillRequests(@PathVariable Integer CompanyAdminId) {
+        return ResponseEntity.status(200).body(companyAdminService.getNewSkillRequestsForAdmin(CompanyAdminId));
+    }
+
+    @GetMapping("/pending-requests/{CompanyAdminId}")
+    public ResponseEntity<?> getAdminPendingRequests(@PathVariable Integer CompanyAdminId) {
+        return ResponseEntity.status(200).body(companyAdminService.getPendingNewSkillRequestsForAdmin(CompanyAdminId));
     }
 }

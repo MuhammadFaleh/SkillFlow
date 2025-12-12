@@ -294,6 +294,49 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
+    public ProjectDTOOut getProjectById(Integer projectId) {
+        Project project = projectRepository.findProjectById(projectId);
+
+        if (project == null) {
+            throw new APIException("project not found with id: " + projectId);
+        }
+
+        return convertToDTO(project);
+    }
+
+    public List<ProjectDTOOut> getProjectsByCompany(Integer companyId) {
+        List<Project> projects = projectRepository.findByCompanyId(companyId);
+        List<ProjectDTOOut> projectDTOOuts = new ArrayList<>();
+
+        for (Project p : projects) {
+            projectDTOOuts.add(convertToDTO(p));
+        }
+
+        return projectDTOOuts;
+    }
+
+    public List<ProjectDTOOut> getProjectsByCompanyAndStatus(Integer companyId, String status) {
+        List<Project> projects = projectRepository.findByCompanyIdAndStatus(companyId, status);
+        List<ProjectDTOOut> projectDTOOuts = new ArrayList<>();
+
+        for (Project p : projects) {
+            projectDTOOuts.add(convertToDTO(p));
+        }
+
+        return projectDTOOuts;
+    }
+
+    public List<ProjectDTOOut> getProjectsByCompanyAndRisk(Integer companyId, String riskLevel) {
+        List<Project> projects = projectRepository.findByCompanyIdAndRisk(companyId, riskLevel);
+        List<ProjectDTOOut> projectDTOOuts = new ArrayList<>();
+
+        for (Project p : projects) {
+            projectDTOOuts.add(convertToDTO(p));
+        }
+
+        return projectDTOOuts;
+    }
+
     private int getRiskPercentageForProject(Project project) {
 
         if (project.getRisk() == null) {

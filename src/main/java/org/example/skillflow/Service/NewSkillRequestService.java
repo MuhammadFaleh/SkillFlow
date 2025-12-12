@@ -87,6 +87,38 @@ public class NewSkillRequestService {
         newSkillRequestRepository.delete(newSkillRequest);
     }
 
+    public List<NewSkillRequestDTOOut> getRequestsByEmployee(Integer employeeId) {
+        List<NewSkillRequest> newSkillRequests = newSkillRequestRepository.findByEmployeeId(employeeId);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : newSkillRequests) {
+            newSkillRequestDTOOuts.add(convertToDTO(r));
+        }
+
+        return newSkillRequestDTOOuts;
+    }
+
+    public List<NewSkillRequestDTOOut> getRequestsByEmployeeAndStatus(Integer employeeId, String status) {
+        List<NewSkillRequest> newSkillRequests = newSkillRequestRepository.findByEmployeeIdAndStatus(employeeId, status);
+        List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
+
+        for (NewSkillRequest r : newSkillRequests) {
+            newSkillRequestDTOOuts.add(convertToDTO(r));
+        }
+
+        return newSkillRequestDTOOuts;
+    }
+
+    public NewSkillRequestDTOOut getRequestById(Integer requestId) {
+        NewSkillRequest newSkillRequest = newSkillRequestRepository.findNewSkillRequestById(requestId);
+
+        if (newSkillRequest == null) {
+            throw new APIException("new skill request not found with id: " + requestId);
+        }
+
+        return convertToDTO(newSkillRequest);
+    }
+
     public NewSkillRequest convertToEntity(NewSkillRequestDTOIn newSkillRequestDTOIn) {
         return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null,null,null,null);
     }
