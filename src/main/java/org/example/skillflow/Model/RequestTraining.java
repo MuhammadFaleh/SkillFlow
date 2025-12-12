@@ -18,12 +18,20 @@ public class RequestTraining {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "timestamp not null")
+    private LocalDateTime start_date;
+
+    @Column(columnDefinition = "timestamp")
+    private LocalDateTime end_date;
+
     @Column(columnDefinition = "varchar(200) not null")
     private String name;
 
     @Column(nullable = false)
     private String notes;
 
+    @Column(columnDefinition = "text")
+    private String rejectNote;
 
     @Column(columnDefinition = "varchar(20) default 'PENDING'")
     private String status;

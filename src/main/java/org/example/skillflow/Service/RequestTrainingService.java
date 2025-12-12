@@ -39,6 +39,7 @@ public class RequestTrainingService {
             throw new APIException("employee does't exist");
         }
         RequestTraining requestTraining = convertToEntity(requestTrainingDTOIn);
+        requestTraining.setStart_date(LocalDateTime.now());
         requestTraining.setStatus("pending");
         requestTraining.setCreatedAt(LocalDateTime.now());
         requestTraining.setEmployee(employee);
@@ -75,6 +76,7 @@ public class RequestTrainingService {
 
 
     public RequestTraining convertToEntity(RequestTrainingDTOIn requestTrainingDTOIn){
-        return new RequestTraining(requestTrainingDTOIn.getRequestTrainingId() , requestTrainingDTOIn.getName() , requestTrainingDTOIn.getNotes() , null , LocalDateTime.now() , null , null);
+        return new RequestTraining(requestTrainingDTOIn.getRequestTrainingId() , requestTrainingDTOIn.getStart_date() , requestTrainingDTOIn.getEnd_date()  , requestTrainingDTOIn.getName() , requestTrainingDTOIn.getNotes()
+                , requestTrainingDTOIn.getRejectNote() , null , null , null , null);
     }
 }

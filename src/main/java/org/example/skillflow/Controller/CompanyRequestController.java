@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import org.example.skillflow.API.APIResponse;
 import org.example.skillflow.DTO.In.CompanyRequestDTOIn;
 import org.example.skillflow.DTO.In.CreateUserCompanyDTO;
-import org.example.skillflow.Model.CompanyRequest;
-import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Service.CompanyRequestService;
 import org.example.skillflow.Service.CompanyService;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +42,7 @@ public class CompanyRequestController {
         return ResponseEntity.status(200).body(new APIResponse("deleted company successfully"));
     }
 
-    @GetMapping("/checkStatus-request/{recordNumber}")
+    @GetMapping("/check-status-request/{recordNumber}")
     public ResponseEntity<?> getRequestStatus(@PathVariable String recordNumber){
         return ResponseEntity.status(200).body(companyRequestService.checkStatusOrderByRecordNumber(recordNumber));
     }
