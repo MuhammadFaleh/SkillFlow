@@ -25,9 +25,6 @@ public class ProjectDTOIn {
     @NotEmpty(message = "description cannot be empty")
     private String description;
 
-    @Pattern(regexp = "(?i)^(pending|approved|in_progress|rejected)$")
-    private String status;
-
     @NotNull(message = "start date cannot be null")
     private LocalDateTime start_date;
 
