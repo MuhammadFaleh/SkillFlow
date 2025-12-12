@@ -77,6 +77,6 @@ public class RequestTrainingService {
 
     public RequestTraining convertToEntity(RequestTrainingDTOIn requestTrainingDTOIn){
         return new RequestTraining(requestTrainingDTOIn.getRequestTrainingId() , requestTrainingDTOIn.getStart_date() , requestTrainingDTOIn.getEnd_date()  , requestTrainingDTOIn.getName() , requestTrainingDTOIn.getNotes()
-                , requestTrainingDTOIn.getRejectNote() , null , null , null , null);
+                , requestTrainingDTOIn.getRejectNote() , null , null , null , null , null);
     }
 }

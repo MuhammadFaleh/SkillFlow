@@ -44,6 +44,11 @@ public class RequestTraining {
 
     @ManyToOne
     @JsonIgnore
+    private Company company;
+
+
+    @ManyToOne
+    @JsonIgnore
     private Employee employee;
 
 }
