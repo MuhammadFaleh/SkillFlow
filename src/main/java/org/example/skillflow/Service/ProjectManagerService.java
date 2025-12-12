@@ -24,6 +24,7 @@ public class ProjectManagerService {
     private final CompanyRepository companyRepository;
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
+    private final EmailService emailService;
 
     public List<ProjectManagerDTOOut> getProjectManagers(){
         List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
