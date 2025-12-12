@@ -13,5 +13,11 @@ public interface ProjectRepository extends JpaRepository<Project,Integer> {
     List<Project> findProjectByCompanyId(Integer id);
 
     List<Project> findProjectByCompanyIdAndSkillsId(Integer id, Integer skill);
+    Project findProjectByCompanyIdAndEmployeesId(Integer id, Integer employee);
 
+    @Query("select p from Project p where p.company.id = ?1 and lower(p.status) = lower(?2)")
+    List<Project> findByCompanyIdAndStatus(Integer companyId, String status);
+
+    @Query("select p from Project p where p.company.id = ?1 and lower(p.risk) = lower(?2)")
+    List<Project> findByCompanyIdAndRisk(Integer companyId, String riskLevel);
 }

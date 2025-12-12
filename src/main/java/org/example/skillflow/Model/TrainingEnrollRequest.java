@@ -2,35 +2,19 @@ package org.example.skillflow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-
-
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class NewSkillRequest {
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class TrainingEnrollRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(columnDefinition = "varchar(200) not null")
-    private String name;
-
-    @Column(columnDefinition = "text not null")
-    private String description;
-
-    @Column(columnDefinition = "varchar(20)")
-    private String status;
 
     @Column(columnDefinition = "timestamp not null")
     private LocalDateTime start_date;
@@ -38,9 +22,22 @@ public class NewSkillRequest {
     @Column(columnDefinition = "timestamp")
     private LocalDateTime end_date;
 
+    @Column(columnDefinition = "varchar(10) not null check(status = 'pending' or status='approved' or status='rejected')")
+    private String status;
+
+    @Column(columnDefinition = "text not null check(length(description) <=300)")
+    private String description;
+
+    @Column(columnDefinition = "text check(length(notes) <=300)")
+    private String notes;
+
     @ManyToOne
     @JsonIgnore
-    private CompanyAdmin companyAdmin;
+    private Training training;
+
+    @ManyToOne
+    @JsonIgnore
+    private Manager manager;
 
     @ManyToOne
     @JsonIgnore

@@ -23,6 +23,9 @@ public class EmployeeService {
     private final ManagerRepository managerRepository;
     private final AddSkillRequestRepository addSkillRequestRepository;
     private final SkillsRepository skillsRepository;
+    private final ProjectRepository projectRepository;
+    private final TrainingSessionRepository sessionRepository;
+    private final TrainingEnrollRequestRepository requestRepository;
 
     public List<EmployeeDTOOut> getEmployees(){
         List<EmployeeDTOOut> employeeDTOOuts = new ArrayList<>();
@@ -86,13 +89,19 @@ public class EmployeeService {
             manager.getEmployee().remove(employee);
             managerRepository.save(manager);
         }
-        // unsign from project and skill
+        // unsign from project and skill training
         addSkillRequestRepository.deleteByEmployeeId(employee.getId());
-        removeAllSkills(employee);
+        requestRepository.deleteByEmployeeId(employee.getId());
+        sessionRepository.deleteByEmployeeId(employee.getId());
+        removeSkills(employee);
+        employee.setProject(null);
+        Project project = projectRepository.findProjectByCompanyIdAndEmployeesId(company_id,id);
+        project.getEmployees().remove(employee);
+        projectRepository.save(project);
         employeeRepository.delete(employee);
     }
 
-    public void removeAllSkills(Employee employee){
+    public void removeSkills(Employee employee){
         for (Skills skills : employee.getSkills()){
             skills.getEmployee().remove(employee);
             skillsRepository.save(skills);
@@ -199,7 +208,6 @@ public class EmployeeService {
 
     public Employee convertToEntity(EmployeeDTOIn employeeDTOIn){
         return new Employee(null ,employeeDTOIn.getUsername(),employeeDTOIn.getFull_name(),
-                employeeDTOIn.getGender(),employeeDTOIn.getAge(),employeeDTOIn.getEmail(),employeeDTOIn.getPassword(),
-                null,null,null,null,null,null , null);
+                employeeDTOIn.getGender(),employeeDTOIn.getAge(),employeeDTOIn.getEmail(),employeeDTOIn.getPassword(), null,null,null,null,null,null,null,null,null);
     }
 }

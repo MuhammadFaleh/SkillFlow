@@ -48,4 +48,7 @@ public class Manager {
 
     @OneToMany(mappedBy = "manager")
     private Set<AddSkillRequest> addSkillRequest;
+
+    @OneToMany(mappedBy = "manager")
+    private Set<TrainingEnrollRequest> trainingEnrollRequest;
 }

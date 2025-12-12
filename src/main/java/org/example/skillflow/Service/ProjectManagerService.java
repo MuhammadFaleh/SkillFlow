@@ -8,6 +8,7 @@ import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.Project;
 import org.example.skillflow.Model.ProjectManager;
 import org.example.skillflow.Repository.CompanyRepository;
+import org.example.skillflow.Repository.EmployeeRepository;
 import org.example.skillflow.Repository.ProjectManagerRepository;
 import org.example.skillflow.Repository.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class ProjectManagerService {
     private final ProjectManagerRepository projectManagerRepository;
     private final CompanyRepository companyRepository;
     private final ProjectRepository projectRepository;
+    private final EmployeeRepository employeeRepository;
+    private final EmailService emailService;
 
     public List<ProjectManagerDTOOut> getProjectManagers(){
         List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
@@ -112,16 +115,30 @@ public class ProjectManagerService {
             throw new APIException("project is not in this company: " + companyId );
         }
 
-        // this makes sure that we don't assign the same project to a project manager twice, btw  made it waaay too simple using contains, turns out you can use it in sets.
+        // this makes sure that we dont assign the same project to a project manager twice, btw i made it waaay too simple using contains, turns out you can use it in sets.
         if (project.getProjectManagers().contains(projectManager)) {
             throw new APIException("this project is already assigned to this project manager with id: " + projectManagerId);
         }
+
+        int projectRisk = getRiskPercentageForProject(project);
+        int currentLoad = projectManager.getRisk_load() == null ? 0 : projectManager.getRisk_load();
+        int newRiskLoad = currentLoad + projectRisk;
+
+        if (newRiskLoad > 100) {
+            throw new APIException("cannot assign project: risk load would exceed 100 , current risk = " + currentLoad + ", project = " + projectRisk );
+        }
+
+        projectManager.setRisk_load(newRiskLoad);
 
         project.getProjectManagers().add(projectManager);
         projectManager.getProjects().add(project);
 
         projectManagerRepository.save(projectManager);
         projectRepository.save(project);
+
+        //for testing later
+//        emailService.sendEmail(projectManager.getEmail(), "You have been assign to a project", "You have been assign to a project with id: "+ projectId+
+//                ", project details: " +project.getDescription() + ", project risk, "+ project.getRisk() + ", project status: "+ project.getStatus());
     }
 
     public void unassignProjectFromManager(Integer projectManagerId, Integer projectId, Integer companyId) {
@@ -148,15 +165,63 @@ public class ProjectManagerService {
             throw new APIException("Manager with id: "+ projectManagerId+", is not assigned to this project");
         }
 
+        int projectRisk = getRiskPercentageForProject(project);
+        int currentLoad = projectManager.getRisk_load() == null ? 0 : projectManager.getRisk_load();
+        int newRiskLoad = currentLoad - projectRisk;
+
+
+        projectManager.setRisk_load(newRiskLoad);
+
         project.getProjectManagers().remove(projectManager);
         projectManager.getProjects().remove(project);
-
-
-
         projectManagerRepository.save(projectManager);
         projectRepository.save(project);
     }
 
+    public ProjectManagerDTOOut getProjectManagerById(Integer id) {
+        ProjectManager projectManager = projectManagerRepository.findProjectManagerById(id);
+        if (projectManager == null) {
+            throw new APIException("project manager not found with id: " + id);
+        }
+        return convertToDTO(projectManager);
+    }
+
+    public List<ProjectManagerDTOOut> getProjectManagersByCompany(Integer companyId) {
+        List<ProjectManager> managers = projectManagerRepository.findByCompanyId(companyId);
+        List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
+
+        for (ProjectManager p : managers) {
+            projectManagerDTOOuts.add(convertToDTO(p));
+        }
+
+        return projectManagerDTOOuts;
+    }
+
+    public List<ProjectManagerDTOOut> getProjectManagersByCompanyAndRiskOver(Integer companyId, Integer limit) {
+        List<ProjectManager> managers = projectManagerRepository.findByCompanyIdAndRiskLoadGreaterThanEqual(companyId, limit);
+        List<ProjectManagerDTOOut> projectManagerDTOOuts = new ArrayList<>();
+
+        for (ProjectManager pm : managers) {
+            projectManagerDTOOuts.add(convertToDTO(pm));
+        }
+
+        return projectManagerDTOOuts;
+    }
+
+
+    private int getRiskPercentageForProject(Project project) {
+        if (project.getRisk() == null) {
+            return 0;
+        }
+
+        return switch (project.getRisk().toLowerCase()) {
+            case "low" -> 25;
+            case "medium" -> 50;
+            case "high" -> 75;
+            case "critical" -> 100;
+            default -> throw new APIException("invalid project risk value: " + project.getRisk());
+        };
+    }
 
     public ProjectManager convertToEntity(ProjectManagerDTOIn projectManagerDTOIn){
         return new ProjectManager(projectManagerDTOIn.getProject_Manager_id(),projectManagerDTOIn.getUsername(),projectManagerDTOIn.getPassword(),projectManagerDTOIn.getFull_name(),projectManagerDTOIn.getGender(),projectManagerDTOIn.getAge(), projectManagerDTOIn.getEmail(),projectManagerDTOIn.getRisk_load(),null, null);

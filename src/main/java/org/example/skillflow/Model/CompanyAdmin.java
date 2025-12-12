@@ -39,9 +39,10 @@ public class CompanyAdmin {
         @JoinColumn(name = "company_id")
         private Company company;
 
-        @OneToMany(mappedBy = "companyAdmin")
-        private Set<RequestTraining> requestTraining;
-
+         @OneToMany(mappedBy = "companyAdmin")
+         private Set<RequestTraining> requestTraining;
+         @OneToMany(mappedBy = "companyAdmin")
+         private Set<NewSkillRequest> newSkillRequests;
 
 }
 

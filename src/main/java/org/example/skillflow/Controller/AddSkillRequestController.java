@@ -37,7 +37,7 @@ public class AddSkillRequestController {
         addSkillRequestService.deleteRequest(requestId,employeeId);
         return ResponseEntity.status(200).body(new APIResponse("the request was deleted successfully"));
     }
-//    approveSkill(Integer id, Integer manager_id)
+
     @PutMapping("/approve-skill-request/{requestId}/{managerId}")
     public ResponseEntity<?> approveRequest(@PathVariable Integer requestId,@PathVariable Integer managerId){
         addSkillRequestService.approveSkill(requestId,managerId);

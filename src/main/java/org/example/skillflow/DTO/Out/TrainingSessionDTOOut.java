@@ -1,6 +1,5 @@
 package org.example.skillflow.DTO.Out;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +9,14 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewSkillRequestDTOOut {
-
-    private Integer request_id;
-    private String name;
-    private String description;
-    private String status;
+public class TrainingSessionDTOOut {
+    private Integer session_id;
+    private Integer training_id;
+    private String training_name;
     private LocalDateTime start_date;
     private LocalDateTime end_date;
-    private Integer checkedBy;
+    private String status;
+    private Integer skills_id;
     private Integer employee_id;
-    private Integer company_id;
+
 }

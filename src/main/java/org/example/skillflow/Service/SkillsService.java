@@ -22,6 +22,9 @@ public class SkillsService {
     private final EmployeeRepository employeeRepository;
     private final ProjectRepository projectRepository;
     private final AddSkillRequestRepository addSkillRequestRepository;
+    private final TrainingSessionRepository sessionRepository;
+    private final TrainingEnrollRequestRepository requestRepository;
+    private final TrainingRepository trainingRepository;
 
     public List<SkillsDTOOut> getSkills(){
         List<SkillsDTOOut> skillsDTOOuts = new ArrayList<>();
@@ -82,7 +85,12 @@ public class SkillsService {
             throw new APIException("skill doesn't exist");
         }
         removeSkillFromAll(skills);
+        for(Training training : trainingRepository.findTrainingBySkillsId(skills.getId())){
+            requestRepository.deleteByTrainingId(training.getId());
+            sessionRepository.deleteByTrainingId(training.getId());
+        }
 
+        trainingRepository.deleteBySkillsId(skills.getId());
         addSkillRequestRepository.deleteBySkillsId(skills.getId());
         skillsRepository.delete(skills);
     }
@@ -118,8 +126,9 @@ public class SkillsService {
     }
 
     public Skills convertToEntity(SkillsDTOIn skillsDTOIn){
-        return new Skills(null, skillsDTOIn.getName(),skillsDTOIn.getDescription(),
-                null,null, null,null , null);
+        return new Skills(null, skillsDTOIn.getName(),skillsDTOIn.getDescription(),null,null, null,null, null);
+
+
     }
 
     public SkillsDTOOut convertToDTO(Skills skills){

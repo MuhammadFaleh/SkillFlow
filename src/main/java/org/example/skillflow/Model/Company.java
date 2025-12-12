@@ -53,7 +53,9 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private Set<Skills> skills;
     @OneToMany(mappedBy = "company")
-    private Set<Training> trainings;
+    private Set<Training>  training;
+    @OneToMany(mappedBy = "company")
+    private Set<TrainingEnrollRequest>  trainingEnrollRequest;
     @OneToMany(mappedBy = "company")
     private Set<RequestTraining> requestTrainings;
 }

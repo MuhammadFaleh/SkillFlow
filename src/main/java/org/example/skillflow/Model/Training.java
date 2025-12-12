@@ -2,33 +2,37 @@ package org.example.skillflow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Setter
-@Getter
 public class Training {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false , length = 200)
+    @Column(columnDefinition = "varchar(200) not null")
     private String name;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "text not null")
     private String description;
 
-    @ManyToOne
-    @JsonIgnore
-    private Company company;
 
+    //    -------- relational ----------
+    @OneToMany(mappedBy = "training")
+    private Set<TrainingSession> trainingSession;
     @ManyToOne
     @JsonIgnore
     private Skills skills;
+    @ManyToOne
+    @JsonIgnore
+    private Company company;
 }
