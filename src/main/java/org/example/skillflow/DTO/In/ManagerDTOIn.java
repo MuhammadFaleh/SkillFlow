@@ -39,5 +39,6 @@ public class ManagerDTOIn {
             message = "please enter at least one number and special character")
     private String password;
 
+    @NotNull(message = "company_id")
     private Integer company_id;
 }

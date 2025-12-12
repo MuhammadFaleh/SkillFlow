@@ -1,13 +1,20 @@
 package org.example.skillflow.Service;
 
+
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.CompanyAdminDTOIn;
+import org.example.skillflow.DTO.In.RequestTrainingDTOIn;
+import org.example.skillflow.Model.Company;
+import org.example.skillflow.Model.CompanyAdmin;
+import org.example.skillflow.Repository.CompanyAdminRepository;
+import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.DTO.Out.CompanyAdminDTOOut;
 import org.example.skillflow.Model.*;
 import org.example.skillflow.Repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +26,8 @@ public class CompanyAdminService {
     private final CompanyRepository companyRepository;
     private final NewSkillRequestRepository newSkillRequestRepository;
     private final SkillsRepository skillsRepository;
+    private final RequestTrainingRepository requestTrainingRepository;
+    private final TrainingRepository trainingRepository;
 
     public List<CompanyAdminDTOOut> getCompanyAdmins() {
         List<CompanyAdminDTOOut> companyAdminDTOOuts = new ArrayList<>();
@@ -26,7 +35,6 @@ public class CompanyAdminService {
         for (CompanyAdmin admin : companyAdminRepository.findAll()) {
             companyAdminDTOOuts.add(convertToDTO(admin));
         }
-
         return companyAdminDTOOuts;
     }
 
@@ -54,10 +62,10 @@ public class CompanyAdminService {
             throw new APIException("company not found with id: " + companyAdminDTOIn.getCompany_id());
         }
 
+        companyAdmin.setEmail(companyAdminDTOIn.getEmail());
         companyAdmin.setUsername(companyAdminDTOIn.getUsername());
         companyAdmin.setPassword(companyAdminDTOIn.getPassword());
         companyAdmin.setCompany(company);
-
         companyAdminRepository.save(companyAdmin);
     }
 
@@ -111,8 +119,71 @@ public class CompanyAdminService {
         newSkillRequestRepository.save(request);
     }
 
+    public void approvedTraining(Integer companyAdminId , Integer requestId){
+        CompanyAdmin companyAdmin = companyAdminRepository.findCompanyAdminById(companyAdminId);
+        if (companyAdmin == null) {
+            throw new APIException("company admin not found with id: " + companyAdminId);
+        }
+
+        RequestTraining request = requestTrainingRepository.findRequestTrainingById(requestId);
+        if (request == null) {
+            throw new APIException("request not found with id: " + requestId);
+        }
+
+        if (!request.getStatus().equalsIgnoreCase("pending")) {
+            throw new APIException("only pending requests can be approved, current status: "+ request.getStatus());
+        }
+
+        Employee employee = request.getEmployee();
+        if (employee == null || employee.getCompany() == null) {
+            throw new APIException("request employee or employee's company do not exist");
+        }
+
+        if (!companyAdmin.getCompany().getId().equals(employee.getCompany().getId())) {
+            throw new APIException("companyAdmin and employee do not have the same company");
+        }
+        Skills skills = new Skills();
+        skills.setName(request.getName());
+        skills.setDescription(request.getName());
+        skills.setCompany(employee.getCompany());
+        skillsRepository.save(skills);
+
+
+        Training training = new Training();
+        training.setCompany(employee.getCompany());
+        training.setDescription(request.getNotes());
+        training.setName(request.getName());
+        training.setSkills(skills);
+        trainingRepository.save(training);
+
+
+        request.setCompanyAdmin(companyAdmin);
+        request.setStatus("approved");
+        requestTrainingRepository.save(request);
+    }
+
+    public void rejectRequestTraining(Integer companyAdminId , Integer requestId , RequestTrainingDTOIn requestTrainingDTOIn){
+        CompanyAdmin admin = companyAdminRepository.findCompanyAdminById(companyAdminId);
+        if (admin == null){
+            throw new APIException("company admin not found");
+        }
+        RequestTraining requestTraining = requestTrainingRepository.findRequestTrainingById(requestId);
+        if (requestTraining == null){
+            throw new APIException("request training not found");
+        }
+        if (!requestTraining.getEmployee().getCompany().getId().equals(admin.getCompany().getId())){
+            throw new APIException("admin company doesn't match the employee company");
+        }
+        if (!requestTraining.getStatus().equalsIgnoreCase("pending")){
+            throw new APIException("request is already checked");
+        }
+        requestTraining.setStatus("rejected");
+        requestTraining.setRejectNote(requestTraining.getRejectNote());
+        requestTraining.setEnd_date(LocalDateTime.now());
+        requestTrainingRepository.save(requestTraining);
+    }
     public CompanyAdmin convertToEntity(CompanyAdminDTOIn dtoIn) {
-        return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getPassword(), null, null);
+        return new CompanyAdmin(dtoIn.getCompanyAdmin_id(), dtoIn.getUsername(), dtoIn.getEmail(), dtoIn.getPassword()  , null , null);
     }
 
     public CompanyAdminDTOOut convertToDTO(CompanyAdmin admin) {

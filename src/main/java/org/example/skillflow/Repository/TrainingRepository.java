@@ -13,4 +13,5 @@ public interface TrainingRepository extends JpaRepository<Training, Integer> {
     List<Training> findTrainingByCompanyId(Integer id);
     @Transactional
     void deleteBySkillsId(Integer skills);
+
 }

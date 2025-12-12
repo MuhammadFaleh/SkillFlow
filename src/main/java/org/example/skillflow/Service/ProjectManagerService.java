@@ -112,7 +112,7 @@ public class ProjectManagerService {
             throw new APIException("project is not in this company: " + companyId );
         }
 
-        // this makes sure that we dont assign the same project to a project manager twice, btw i made it waaay too simple using contains, turns out you can use it in sets.
+        // this makes sure that we don't assign the same project to a project manager twice, btw  made it waaay too simple using contains, turns out you can use it in sets.
         if (project.getProjectManagers().contains(projectManager)) {
             throw new APIException("this project is already assigned to this project manager with id: " + projectManagerId);
         }

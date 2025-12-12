@@ -47,9 +47,11 @@ public class Employee {
     @ManyToOne
     @JsonIgnore
     private Manager manager;
+
     @ManyToOne
     @JsonIgnore
     private Company company;
+
     @ManyToMany(mappedBy = "employee")
     private Set<Skills> skills;
     @OneToMany(mappedBy = "employee")
@@ -62,4 +64,7 @@ public class Employee {
     @JsonIgnore
     private Set<TrainingSession> trainingSession;
 
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<RequestTraining> requestTraining;
 }
