@@ -26,14 +26,14 @@ public class Skills {
     @Column(columnDefinition = "text not null")
     private String description;
 
+    //    -------- relational ----------
     @OneToMany(mappedBy = "skills")
     private Set<AddSkillRequest> addSkillRequest;
-
+    @OneToMany(mappedBy = "skills")
+    private Set<Training> training;
     @ManyToOne
     @JsonIgnore
     private Company company;
-
-
     @ManyToMany
     @JoinTable(
             name = "employee_skills",
@@ -41,8 +41,6 @@ public class Skills {
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
     private Set<Employee> employee;
-
-
     @ManyToMany(mappedBy = "skills")
     @JsonIgnore
     private Set<Project> projects;

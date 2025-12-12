@@ -36,6 +36,9 @@ public class Employee {
 
     @Column(columnDefinition = "varchar(254) not null")
     private String password;
+
+
+    //    -------- relational ----------
     @ManyToOne
     @JsonIgnore
     private Project project;
@@ -52,5 +55,11 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private Set<NewSkillRequest> newSkillRequests;
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<TrainingEnrollRequest> trainingEnrollRequest;
+    @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    private Set<TrainingSession> trainingSession;
 
 }

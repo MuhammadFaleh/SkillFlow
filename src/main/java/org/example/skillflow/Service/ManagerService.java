@@ -120,7 +120,7 @@ public class ManagerService {
     public Manager convertToEntity(ManagerDTOIn managerDTOIn){
         return new Manager(null,managerDTOIn.getUsername(),managerDTOIn.getFull_name(),
                 managerDTOIn.getGender(),managerDTOIn.getAge(),managerDTOIn.getEmail(),managerDTOIn.getPassword(),
-                null, null ,null);
+                null, null ,null,null);
     }
 
 }

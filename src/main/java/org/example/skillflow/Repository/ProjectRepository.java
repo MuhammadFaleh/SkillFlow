@@ -2,7 +2,6 @@ package org.example.skillflow.Repository;
 
 import org.example.skillflow.Model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +12,6 @@ public interface ProjectRepository extends JpaRepository<Project,Integer> {
     List<Project> findProjectByCompanyId(Integer id);
 
     List<Project> findProjectByCompanyIdAndSkillsId(Integer id, Integer skill);
+    Project findProjectByCompanyIdAndEmployeesId(Integer id, Integer employee);
 
 }

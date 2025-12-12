@@ -72,9 +72,9 @@ public class CompanyService {
     }
 
     public Company handleDTOCreateUser(CompanyRequest companyRequest , CreateUserCompanyDTO createUserCompanyDTO){
-        return new Company(createUserCompanyDTO.getCompanyId(),companyRequest.getCompanyName() , createUserCompanyDTO.getUsername() , createUserCompanyDTO.getEmail() , createUserCompanyDTO.getPassword() , companyRequest.getRecordNumber() , companyRequest.getCountry() , companyRequest.getIndustry() , LocalDate.now() , null , null , null);
+        return new Company(createUserCompanyDTO.getCompanyId(),companyRequest.getCompanyName() , createUserCompanyDTO.getUsername() , createUserCompanyDTO.getEmail() , createUserCompanyDTO.getPassword() , companyRequest.getRecordNumber() , companyRequest.getCountry() , companyRequest.getIndustry() , LocalDate.now() , null , null , null,null,null);
     }
     public Company convertToEntity(CompanyDTOIn companyDTOIn){
-        return new Company(companyDTOIn.getCompanyId() , companyDTOIn.getName() , companyDTOIn.getUsername() , companyDTOIn.getEmail() , companyDTOIn.getPassword() , companyDTOIn.getRecord_number() , companyDTOIn.getCountry() , companyDTOIn.getIndustry() , null , null , null , null);
+        return new Company(companyDTOIn.getCompanyId() , companyDTOIn.getName() , companyDTOIn.getUsername() , companyDTOIn.getEmail() , companyDTOIn.getPassword() , companyDTOIn.getRecord_number() , companyDTOIn.getCountry() , companyDTOIn.getIndustry() , null , null , null , null,null,null);
     }
 }
