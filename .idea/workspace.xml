@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c40f78ac-3766-4e89-9acd-3f429eedb2aa" name="Changes" comment="Merge branch 'Abdulmajed' into test&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/skillflow/DTO/In/TrainingDTOIn.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Company.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Employee.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Skills.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Training.java&#10;#&#9;src/main/java/org/example/skillflow/Repository/TrainingRepository.java&#10;#&#9;src/main/java/org/example/skillflow/Service/CompanyService.java&#10;#&#9;src/main/java/org/example/skillflow/Service/EmployeeService.java&#10;#&#9;src/main/java/org/example/skillflow/Service/SkillsService.java&#10;#&#9;target/classes/org/example/skillflow/Model/Company.class&#10;#&#9;target/classes/org/example/skillflow/Model/Employee.class&#10;#&#9;target/classes/org/example/skillflow/Model/Skills.class&#10;#&#9;target/classes/org/example/skillflow/Service/CompanyService.class&#10;#&#9;target/classes/org/example/skillflow/Service/EmployeeService.class&#10;#&#9;target/classes/org/example/skillflow/Service/SkillsService.class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ProjectManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ProjectManagerService.java" afterDir="false" />
-    </list>
+    <list default="true" id="2dcd5829-a846-4a5e-89a2-f9961ceb8d6d" name="Changes" comment="Merge remote-tracking branch 'origin/test' into Abdulmajed&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/skillflow/Model/CompanyAdmin.java" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,52 +13,21 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;MuhammadFaleh&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MuhammadFaleh/SkillFlow.git&quot;,
-    &quot;accountId&quot;: &quot;bb4e65ec-0571-4bd1-9a73-c05a93635624&quot;
-  }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="36eL7lhA8TdDInBUru1fffzU34J" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.SkillflowApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ACER/Desktop/capstone3/SkillFlow&quot;
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;Spring Boot.SkillflowApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Abdulmajed&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="skillflow" />

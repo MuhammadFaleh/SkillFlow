@@ -22,6 +22,8 @@ public class TrainingEnrollRequestService {
     private final TrainingRepository trainingRepository;
     private final CompanyRepository companyRepository;
     private final TrainingSessionRepository trainingSessionRepository;
+    private final EmailService emailService;
+    private final AiService aiService;
 
     public List<TrainingEnrollRequestDTOOut> getRequests(){
         List<TrainingEnrollRequestDTOOut> requestDTOOuts = new ArrayList<>();
@@ -132,15 +134,17 @@ public class TrainingEnrollRequestService {
         request.setStatus("approved");
         request.setEnd_date(LocalDateTime.now());
         trainingEnrollRequestRepository.save(request);
+        emailService.sendEmail(employee.getEmail(), "training Enrollment", "Your request with id: " +id+ ", has been approved");
     }
 
     public void rejectRequest(Integer id, Integer manager_id, TrainingEnrollRequestDTOIn requestDTOIn){
         TrainingEnrollRequest request = trainingEnrollRequestRepository.findRequestById(id);
 
+//        Employee employee = employeeRepository.findEmployeeById(requestDTOIn.getEmployee_id());
+
         if(request == null){
             throw new APIException("no request found please make one");
         }
-
         if(request.getManager() == null ||
                 !manager_id.equals(request.getManager().getId())){
             throw new APIException("manager id doesn't match the employee manager id");
@@ -154,6 +158,9 @@ public class TrainingEnrollRequestService {
         request.setEnd_date(LocalDateTime.now());
         request.setNotes(requestDTOIn.getNotes());
         trainingEnrollRequestRepository.save(request);
+
+        String answer = aiService.getRejectEnrollForEmail(requestDTOIn.getNotes());
+        emailService.sendEmail(request.getEmployee().getEmail() , "training enrollment rejected" , answer);
     }
 
     public List<TrainingEnrollRequestDTOOut> getRequestsByEmployeeIdAndStatus(Integer id,String status){

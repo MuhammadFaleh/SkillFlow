@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
 import org.example.skillflow.DTO.In.NewSkillRequestDTOIn;
 import org.example.skillflow.DTO.Out.NewSkillRequestDTOOut;
+import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.CompanyAdmin;
 import org.example.skillflow.Model.Employee;
 import org.example.skillflow.Model.NewSkillRequest;
@@ -22,6 +23,7 @@ public class NewSkillRequestService {
     private final NewSkillRequestRepository newSkillRequestRepository;
     private final EmployeeRepository employeeRepository;
 
+
     public List<NewSkillRequestDTOOut> getNewSkillRequests() {
         List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
 
@@ -39,13 +41,13 @@ public class NewSkillRequestService {
             throw new APIException("employee not found with id: " + newSkillRequestDTOIn.getEmployee_id());
         }
 
-
         NewSkillRequest newSkillRequest = convertToEntity(newSkillRequestDTOIn);
         newSkillRequest.setEmployee(employee);
 
         employee.getNewSkillRequests().add(newSkillRequest);
         employeeRepository.save(employee);
 
+        newSkillRequest.setCompany(employee.getCompany());
         newSkillRequest.setCompanyAdmin(null);
         newSkillRequest.setStatus("pending");
         newSkillRequest.setStart_date(LocalDateTime.now());
@@ -74,9 +76,6 @@ public class NewSkillRequestService {
             throw new APIException("new skill request not found with id: " + requestId);
         }
 
-        if (!newSkillRequest.getStatus().equalsIgnoreCase("pending")) {
-            throw new APIException("only pending requests can be deleted: current status: " + newSkillRequest.getStatus());
-        }
 
         Employee employee = newSkillRequest.getEmployee();
         if (employee != null && employee.getNewSkillRequests() != null) {
@@ -131,6 +130,9 @@ public class NewSkillRequestService {
     public NewSkillRequestDTOOut convertToDTO(NewSkillRequest newSkillRequest) {
         if (newSkillRequest.getCompanyAdmin() == null){
             return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,null, newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
+        }
+        if (newSkillRequest.getEmployee() == null){
+            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,null, null,newSkillRequest.getCompany().getId());
         }
         return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,newSkillRequest.getCompanyAdmin().getId(), newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
     }

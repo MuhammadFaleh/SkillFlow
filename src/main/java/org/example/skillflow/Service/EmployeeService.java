@@ -37,11 +37,16 @@ public class EmployeeService {
 
     public void createEmployee(EmployeeDTOIn employeeDTOIn){
         Company company = companyRepository.findCompanyById(employeeDTOIn.getCompany_id());
+        Manager manager = managerRepository.findManagerById(employeeDTOIn.getManager_id());
+        if (manager == null){
+            throw new APIException("Manger doesn't exist");
+        }
         if(company == null){
             throw new APIException("company doesn't exist");
         }
         Employee employee = convertToEntity(employeeDTOIn);
         employee.setCompany(company);
+        employee.setManager(manager);
         // set skills
         // set project
         employeeRepository.save(employee);

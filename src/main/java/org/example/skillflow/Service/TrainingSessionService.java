@@ -20,6 +20,8 @@ public class TrainingSessionService {
     private final TrainingRepository trainingRepository;
     private final SkillsRepository skillsRepository;
     private final EmployeeRepository employeeRepository;
+    private final EmailService emailService;
+    private final AiService aiService;
 
     public List<TrainingSessionDTOOut> getTrainingSession(){
         List<TrainingSessionDTOOut> sessionDTOOuts = new ArrayList<>();
@@ -110,6 +112,9 @@ public class TrainingSessionService {
         employeeRepository.save(employee);
         skillsRepository.save(skills);
         sessionRepository.save(session);
+
+        String answer = aiService.getCompleteTrainingSessionForEmail(session.getTraining().getDescription());
+        emailService.sendEmail(employee.getEmail() , "Training session Completed" ,answer);
     }
 
     public void cancelSession(Integer id, Integer employee_id, TrainingSessionDTOIn sessionDTOIn){

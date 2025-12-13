@@ -22,6 +22,8 @@ public class AddSkillRequestService {
     private final AddSkillRequestRepository addSkillRequestRepository;
     private final EmployeeRepository employeeRepository;
     private final SkillsRepository skillsRepository;
+    private final EmailService emailService;
+    private final AiService aiService;
 
     public List<AddSkillRequestDTOOut> getRequests(){
         List<AddSkillRequestDTOOut> addSkillRequestDTOOuts = new ArrayList<>();
@@ -136,11 +138,12 @@ public class AddSkillRequestService {
         addSkillRequestRepository.save(addSkillRequest);
         skills.getEmployee().add(employee);
         skillsRepository.save(skills);
+        emailService.sendEmail(employee.getEmail() , "Skill approved" , "skill with name : " + skills.getName() + " has been added to you successfully");
+
     }
 
     public void rejectSkill(Integer id, Integer manager_id, AddSkillRequestDTOIn addSkillRequestDTOIn){
         AddSkillRequest addSkillRequest = addSkillRequestRepository.findAddSkillRequestById(id);
-
 
         if(addSkillRequest == null){
             throw new APIException("no request found please make one");
@@ -159,6 +162,10 @@ public class AddSkillRequestService {
         addSkillRequest.setEnd_date(LocalDateTime.now());
         addSkillRequest.setNotes(addSkillRequestDTOIn.getNotes());
         addSkillRequestRepository.save(addSkillRequest);
+
+        String answer = aiService.getRejectSkillForEmail(addSkillRequest.getNotes());
+        emailService.sendEmail(addSkillRequest.getEmployee().getEmail(), "Skill rejected" , answer);
+
     }
 
     public List<AddSkillRequestDTOOut> getRequestsByEmployeeId(Integer id){

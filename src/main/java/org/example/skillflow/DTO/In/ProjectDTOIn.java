@@ -25,10 +25,8 @@ public class ProjectDTOIn {
     @NotEmpty(message = "description cannot be empty")
     private String description;
 
-    @NotNull(message = "start date cannot be null")
     private LocalDateTime start_date;
 
-    @NotNull(message = "end date cannot be null")
     private LocalDateTime end_date;
 
     @Pattern(regexp = "(?i)^(low|medium|high|critical)$")
