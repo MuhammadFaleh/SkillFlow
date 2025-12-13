@@ -11,7 +11,7 @@
     <artifactId>factory-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>factory-system</name>
-    <description>capstone 2: factory-system to handle incident reporting. done for tuwaiq bootcamp</description>
+    <description>capstone 3: employee skill project management to handle incident reporting. done for tuwaiq bootcamp</description>
     <url/>
     <licenses>
         <license/>
@@ -83,6 +83,7 @@
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
