@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dcd5829-a846-4a5e-89a2-f9961ceb8d6d" name="Changes" comment="Merge branch 'Abdulmajed' into test&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/skillflow/DTO/In/TrainingDTOIn.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Company.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Employee.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Skills.java&#10;#&#9;src/main/java/org/example/skillflow/Model/Training.java&#10;#&#9;src/main/java/org/example/skillflow/Repository/TrainingRepository.java&#10;#&#9;src/main/java/org/example/skillflow/Service/CompanyService.java&#10;#&#9;src/main/java/org/example/skillflow/Service/EmployeeService.java&#10;#&#9;src/main/java/org/example/skillflow/Service/SkillsService.java&#10;#&#9;target/classes/org/example/skillflow/Model/Company.class&#10;#&#9;target/classes/org/example/skillflow/Model/Employee.class&#10;#&#9;target/classes/org/example/skillflow/Model/Skills.class&#10;#&#9;target/classes/org/example/skillflow/Service/CompanyService.class&#10;#&#9;target/classes/org/example/skillflow/Service/EmployeeService.class&#10;#&#9;target/classes/org/example/skillflow/Service/SkillsService.class">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="2dcd5829-a846-4a5e-89a2-f9961ceb8d6d" name="Changes" comment="Merge remote-tracking branch 'origin/test' into Abdulmajed&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/skillflow/Model/CompanyAdmin.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Controller/ProjectManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ProjectManagerDTOIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/In/ProjectManagerDTOIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/ProjectFullDTOOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/DTO/Out/ProjectFullDTOOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/skillflow/Service/ProjectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +30,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MuhammadFaleh"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MuhammadFaleh/SkillFlow.git",
+    "accountId": "bb4e65ec-0571-4bd1-9a73-c05a93635624"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="36pxkmlHgu9Kux5ZKMOBSF6m5vl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.SkillflowApplication.executor": "Run",
@@ -30,12 +57,29 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.SkillflowApplication.executor": "Run",
-    "git-widget-placeholder": "Abdulmajed",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ACER/Desktop/capstone3/SkillFlow",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SkillflowApplication">
+    <configuration name="SkillflowApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.skillflow.SkillflowApplication" />
+      <module name="skillflow" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.skillflow.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SkillflowApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="skillflow" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.skillflow.SkillflowApplication" />
@@ -43,8 +87,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SkillflowApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2dcd5829-a846-4a5e-89a2-f9961ceb8d6d" name="Changes" comment="Merge remote-tracking branch 'origin/test' into Abdulmajed&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/skillflow/Model/CompanyAdmin.java" />
+      <created>1765717460705</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765717460705</updated>
+    </task>
     <servers />
   </component>
 </project>

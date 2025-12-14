@@ -24,7 +24,7 @@ public class ProjectManagerController {
     public ResponseEntity<?> addProjectManager(@RequestBody @Valid ProjectManagerDTOIn projectManagerDTOIn) {
         projectManagerService.createProjectManager(projectManagerDTOIn);
 
-        return ResponseEntity.status(200).body(new APIResponse("project manager has been created with id: " + projectManagerDTOIn.getProject_Manager_id()));
+        return ResponseEntity.status(200).body(new APIResponse("project manager has been created with username: " + projectManagerDTOIn.getUsername()));
     }
 
     @PutMapping("/update/{id}")
@@ -48,10 +48,28 @@ public class ProjectManagerController {
         return ResponseEntity.status(200).body(new APIResponse("project with id: "+ projectId +", has been assigned to project manager with id: " + projectManagerId));
     }
 
-    @PutMapping("unassign-project/{projectManagerId}/{projectId}/{companyId}")
+    @PutMapping("/unassign-project/{projectManagerId}/{projectId}/{companyId}")
     public ResponseEntity<?> unassignProjectFromManager(@PathVariable Integer projectManagerId, @PathVariable Integer projectId, @PathVariable Integer companyId) {
         projectManagerService.unassignProjectFromManager(projectManagerId,projectId, companyId);
 
         return ResponseEntity.status(200).body(new APIResponse("project with id: "+ projectId +" has been unassigned from project manager with id: " + projectManagerId));
     }
+
+    @GetMapping("/get-project-manager/{id}")
+    public ResponseEntity<?> getProjectManagerById(@PathVariable Integer id) {
+
+        return ResponseEntity.status(200).body(projectManagerService.getProjectManagerById(id));
+    }
+
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<?> getProjectManagersByCompany(@PathVariable Integer companyId) {
+        return ResponseEntity.status(200).body(projectManagerService.getProjectManagersByCompany(companyId));
+
+    }
+
+    @GetMapping("/company-risk-over/{companyId}/{limit}")
+    public ResponseEntity<?> getProjectManagersByRiskOver(@PathVariable Integer companyId,@PathVariable Integer limit) {
+        return ResponseEntity.status(200).body(projectManagerService.getProjectManagersByCompanyAndRiskOver(companyId, limit));
+    }
+
 }
