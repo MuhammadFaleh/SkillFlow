@@ -8,6 +8,7 @@ import org.example.skillflow.Model.Company;
 import org.example.skillflow.Model.CompanyAdmin;
 import org.example.skillflow.Model.Employee;
 import org.example.skillflow.Model.NewSkillRequest;
+import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Repository.EmployeeRepository;
 import org.example.skillflow.Repository.NewSkillRequestRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class NewSkillRequestService {
 
     private final NewSkillRequestRepository newSkillRequestRepository;
     private final EmployeeRepository employeeRepository;
-
+    private final CompanyRepository companyRepository;
 
     public List<NewSkillRequestDTOOut> getNewSkillRequests() {
         List<NewSkillRequestDTOOut> newSkillRequestDTOOuts = new ArrayList<>();
@@ -46,7 +47,8 @@ public class NewSkillRequestService {
 
         employee.getNewSkillRequests().add(newSkillRequest);
         employeeRepository.save(employee);
-
+        employee.getCompany().getNewSkillRequests().add(newSkillRequest);
+        companyRepository.save(employee.getCompany());
         newSkillRequest.setCompany(employee.getCompany());
         newSkillRequest.setCompanyAdmin(null);
         newSkillRequest.setStatus("pending");
@@ -124,16 +126,16 @@ public class NewSkillRequestService {
     }
 
     public NewSkillRequest convertToEntity(NewSkillRequestDTOIn newSkillRequestDTOIn) {
-        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, null, null,null,null,null);
+        return new NewSkillRequest(newSkillRequestDTOIn.getRequest_id(), newSkillRequestDTOIn.getName(), newSkillRequestDTOIn.getDescription(), null, LocalDateTime.now(), null,null,null,null);
     }
 
     public NewSkillRequestDTOOut convertToDTO(NewSkillRequest newSkillRequest) {
         if (newSkillRequest.getCompanyAdmin() == null){
-            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,null, newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
+            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(), newSkillRequest.getStart_date(), newSkillRequest.getEnd_date(),null, newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
         }
         if (newSkillRequest.getEmployee() == null){
-            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,null, null,newSkillRequest.getCompany().getId());
+            return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),newSkillRequest.getStart_date(), newSkillRequest.getEnd_date(),null, null,newSkillRequest.getCompany().getId());
         }
-        return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),null,null,newSkillRequest.getCompanyAdmin().getId(), newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
+        return new NewSkillRequestDTOOut(newSkillRequest.getId(), newSkillRequest.getName(), newSkillRequest.getDescription(), newSkillRequest.getStatus(),newSkillRequest.getStart_date(), newSkillRequest.getEnd_date(),newSkillRequest.getCompanyAdmin().getId(), newSkillRequest.getEmployee().getId(),newSkillRequest.getCompany().getId());
     }
 }

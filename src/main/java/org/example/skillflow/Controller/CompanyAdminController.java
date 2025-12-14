@@ -42,7 +42,7 @@ public class CompanyAdminController {
     }
 
 
-    @PostMapping("/approve-training-request/{CompanyAdminId}/{requestId}")
+    @PutMapping("/approve-training-request/{CompanyAdminId}/{requestId}")
     public ResponseEntity<?> approveTrainingRequest(@PathVariable Integer CompanyAdminId, @PathVariable Integer requestId) {
         companyAdminService.approvedTraining(CompanyAdminId , requestId);
         return ResponseEntity.status(200).body(new APIResponse("training request with id: "+ requestId+", has been approved and added to Training"));

@@ -343,7 +343,7 @@ public class CompanyAdminService {
         if (requestTraining == null){
             throw new APIException("request training not found");
         }
-        Employee employee = employeeRepository.findEmployeeById(requestTrainingDTOIn.getEmployee_id());
+        Employee employee = employeeRepository.findEmployeeById(requestTraining.getEmployee().getId());
 
         if (!requestTraining.getEmployee().getCompany().getId().equals(admin.getCompany().getId())){
             throw new APIException("admin company doesn't match the employee company");
@@ -352,13 +352,13 @@ public class CompanyAdminService {
             throw new APIException("request is already checked");
         }
         requestTraining.setStatus("rejected");
-        requestTraining.setRejectNote(requestTraining.getRejectNote());
+        requestTraining.setRejectNote(requestTrainingDTOIn.getRejectNote());
         requestTraining.setEnd_date(LocalDateTime.now());
         requestTrainingRepository.save(requestTraining);
 
 
         String answer = aiService.getRejectNoteForEmail(requestTraining.getRejectNote());
-        emailService.sendEmail("mjedmunif@gmail.com", "Training Request Rejected", "Your request with id: "+requestId+ ", has been rejected, notes: " + answer);
+        emailService.sendEmail(employee.getEmail(), "Training Request Rejected", "Your request with id: "+requestId+ ", has been rejected, notes: " + answer);
     }
 
 

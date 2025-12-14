@@ -30,7 +30,7 @@ public class RequestTrainingService {
         RequestTraining lastRequestEmployee = requestTrainingRepository.findTheLatestRequest(requestTrainingDTOIn.getEmployee_id());
         if (lastRequestEmployee != null){
             if (lastRequestEmployee.getName().equalsIgnoreCase(requestTrainingDTOIn.getName())
-                    || lastRequestEmployee.getNotes().equalsIgnoreCase(requestTrainingDTOIn.getNotes()) ){
+                   && !lastRequestEmployee.getStatus().equalsIgnoreCase("rejected") ){
                 throw new APIException("request it's already created");
             }
         }
