@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.skillflow.Model.Employee;
+import org.example.skillflow.Model.Skills;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class ProjectFullDTOOut {
     private LocalDateTime start_date;
     private LocalDateTime end_date;
     private String risk;
-    private ProjectManagerShortDTOOut projectManager;
+    private Set<ProjectManagerShortDTOOut> projectManager;
     private Set<EmployeeShortDTOOut> Employee;
+    private Set<SkillsDTOOut> skills;
 }

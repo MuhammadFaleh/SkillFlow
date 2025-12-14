@@ -24,7 +24,7 @@ public class ProjectController {
     public ResponseEntity<?> addProject(@RequestBody @Valid ProjectDTOIn projectDTOIn) {
         projectService.createProject(projectDTOIn);
 
-        return ResponseEntity.status(200).body(new APIResponse("project created successfully with id: " + projectDTOIn.getProject_id()));
+        return ResponseEntity.status(200).body(new APIResponse("project created successfully"));
     }
 
     @PutMapping("/update/{projectId}")
@@ -53,6 +53,52 @@ public class ProjectController {
     public ResponseEntity<?> unassignSkillFromProject(@PathVariable Integer projectId, @PathVariable Integer skillId, @PathVariable Integer companyId) {
         projectService.unassignSkillFromProject(projectId,skillId, companyId);
         return ResponseEntity.status(200).body(new APIResponse("skill with id: "+ skillId+", unassigned from project with id: " + projectId));
+    }
+
+    @PutMapping("/complete/{projectId}/{companyId}")
+    public ResponseEntity<?> completeProject(@PathVariable Integer projectId,@PathVariable Integer companyId) {
+        projectService.completeProject(projectId, companyId);
+
+        return ResponseEntity.ok(new APIResponse("project completed with id: " + projectId));
+    }
+
+    @PutMapping("/assign-employee/{projectId}/{employeeId}/{companyId}")
+    public ResponseEntity<?> assignEmployeeToProject(@PathVariable Integer projectId,@PathVariable Integer employeeId,@PathVariable Integer companyId) {
+        projectService.assignEmployeeToProject(projectId,employeeId,companyId);
+        return ResponseEntity.status(200).body(new APIResponse("employee with id: "+ employeeId+  ",has been assigned to project: "+ projectId ));
+    }
+
+    @PutMapping("/unassign-employee/{projectId}/{employeeId}/{companyId}")
+    public ResponseEntity<?> unassignEmployeeFromProject(@PathVariable Integer projectId,@PathVariable Integer employeeId, @PathVariable Integer companyId) {
+        projectService.unassignEmployeeFromProject(projectId, employeeId, companyId);
+        return ResponseEntity.status(200).body(new APIResponse("employee with id: "+ employeeId+  ",has been unassigned to project: "+ projectId));
+    }
+
+    @GetMapping("/get-project/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable Integer projectId) {
+
+        return ResponseEntity.status(200).body(projectService.getProjectById(projectId));
+    }
+
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<?> getProjectsByCompany(@PathVariable Integer companyId) {
+
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompany(companyId));
+    }
+
+    @GetMapping("/company-by-status/{companyId}/{status}")
+    public ResponseEntity<?> getProjectsByCompanyAndStatus(@PathVariable Integer companyId,@PathVariable String status) {
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompanyAndStatus(companyId,status));
+    }
+
+    @GetMapping("/company-by-risk/{companyId}/{riskLevel}")
+    public ResponseEntity<?> getProjectsByCompanyAndRisk(@PathVariable Integer companyId ,@PathVariable String riskLevel) {
+        return ResponseEntity.status(200).body(projectService.getProjectsByCompanyAndRisk(companyId,riskLevel));
+    }
+
+    @GetMapping("get-project-full/{company_id}")
+    public ResponseEntity<?> getProjectFullInfo(@PathVariable Integer company_id){
+        return ResponseEntity.status(200).body(projectService.getProjectFullInfo(company_id));
     }
 
 }

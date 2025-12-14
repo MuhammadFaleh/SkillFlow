@@ -2,8 +2,9 @@ package org.example.skillflow.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.skillflow.API.APIException;
+import org.example.skillflow.DTO.In.AI.EmployeeMatchDTOIn;
 import org.example.skillflow.DTO.In.ProjectDTOIn;
-import org.example.skillflow.DTO.Out.ProjectDTOOut;
+import org.example.skillflow.DTO.Out.*;
 import org.example.skillflow.Model.*;
 import org.example.skillflow.Repository.CompanyRepository;
 import org.example.skillflow.Repository.EmployeeRepository;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -362,4 +365,44 @@ public class ProjectService {
     public ProjectDTOOut convertToDTO(Project project) {
         return new ProjectDTOOut(project.getId(), project.getDescription(), project.getStatus(), project.getStart_date(), project.getEnd_date(), project.getRisk());
     }
+
+    public List<ProjectFullDTOOut> getProjectFullInfo(Integer company_id){
+        List<ProjectFullDTOOut> ProjectFullDTOOut = new ArrayList<>();
+        for (Project project : projectRepository.findProjectByCompanyId(company_id)){
+            ProjectFullDTOOut.add(convertShortToDTO(project));
+        }
+        return ProjectFullDTOOut;
+    }
+
+    public ProjectFullDTOOut convertShortToDTO(Project project){
+        return new ProjectFullDTOOut(project.getId(),project.getDescription(),project.getStatus(),project.getStart_date(),project.getEnd_date(),project.getRisk(),convertProjectManagerToShortDTOOut(project.getProjectManagers()),convertEmployeeToShortDTOOut(project.getEmployees()),convertSkillsToDTOOut(project.getSkills()));
+
+    }
+
+    public Set<ProjectManagerShortDTOOut> convertProjectManagerToShortDTOOut(Set<ProjectManager>  projectManagers){
+        Set<ProjectManagerShortDTOOut> projectManagerShortDTOOut = new HashSet<>();
+        for (ProjectManager pm : projectManagers){
+            projectManagerShortDTOOut.add(new ProjectManagerShortDTOOut(pm.getId(),pm.getUsername(),pm.getEmail()));
+        }
+        return projectManagerShortDTOOut;
+    }
+
+    public Set<SkillsDTOOut> convertSkillsToDTOOut(Set<Skills> skills){
+        Set<SkillsDTOOut> skillsDTOOuts = new HashSet<>();
+        for (Skills s : skills){
+            skillsDTOOuts.add(new SkillsDTOOut(s.getId(),s.getName(),
+                    s.getDescription(),s.getCompany().getId()));
+        }
+        return skillsDTOOuts;
+    }
+
+    public Set<EmployeeShortDTOOut> convertEmployeeToShortDTOOut(Set<Employee>  employees){
+        Set<EmployeeShortDTOOut> employeeShortDTOOut = new HashSet<>();
+        for (Employee e : employees){
+            employeeShortDTOOut.add(new EmployeeShortDTOOut(e.getId(),e.getUsername(),e.getEmail()));
+        }
+        return employeeShortDTOOut;
+    }
+
+
 }

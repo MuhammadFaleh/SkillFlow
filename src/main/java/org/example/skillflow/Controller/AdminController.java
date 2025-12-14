@@ -39,18 +39,18 @@ public class AdminController {
         return ResponseEntity.status(200).body(new APIResponse("Delete admin successfully"));
     }
 
-    @GetMapping("/getRequestStatusPending")
+    @GetMapping("/get-request-status-pending")
     public ResponseEntity<?> getRequestCompany(){
         return ResponseEntity.status(200).body(adminService.getCompanyRequestByStatus());
     }
 
-    @PutMapping("/applyCompany/{adminId}/{requestId}")
+    @PutMapping("/apply-company/{adminId}/{requestId}")
     public ResponseEntity<?> applyCompanyRequest(@PathVariable Integer adminId , @PathVariable Integer requestId){
         adminService.applyRequestCompany(adminId, requestId);
         return ResponseEntity.status(200).body(new APIResponse("Applied company successfully"));
     }
 
-    @GetMapping("/rejectOrder/{adminId}/{requestCompanyId}")
+    @GetMapping("/reject-order/{adminId}/{requestCompanyId}")
     public ResponseEntity<?> rejectRequestOrder(@PathVariable Integer adminId , @PathVariable Integer requestCompanyId){
         adminService.rejectRequestCompany(adminId, requestCompanyId);
         return ResponseEntity.status(200).body(new APIResponse("rejected request successfully"));
