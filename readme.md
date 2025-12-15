@@ -138,9 +138,9 @@ This project is developed by:
 - [MuhammadFaleh](https://github.com/MuhammadFaleh)
     1. (employee, manager, skill, add existing skill, add existing training, training session, training, database schema, AI chatbot API with langchain and fastAPI)
 - [OsamaAlahmadi-90](https://github.com/OsamaAlahmadi-90)
-    2. (Project, Project Manager, company admin, new skill request, presntaion creation, database schema, email with chatbot)
+    1. (Project, Project Manager, company admin, new skill request, presntaion creation, database schema, email with chatbot)
 - [mjedmunif](https://github.com/mjedmunif)
-    3. (new company request, company creation, admin, new training creation, company admin,database schema, email with chatbot)
+    1. (new company request, company creation, admin, new training creation, company admin,database schema, email with chatbot)
 
 - ## License
 
