@@ -139,6 +139,10 @@ This project is developed by:
 - [OsamaAlahmadi-90](https://github.com/OsamaAlahmadi-90)
 - [mjedmunif](https://github.com/mjedmunif)
 
+- ## License
+
+Apache License Version 2.0, January 2004
+
 ---
 
 **Note**: SkillFlow is designed as a company-internal system and requires proper configuration of user roles and permissions before deployment.
