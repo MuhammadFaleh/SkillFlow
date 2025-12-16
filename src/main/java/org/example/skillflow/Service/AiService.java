@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import tools.jackson.databind.JsonNode;
 
 import java.util.*;
 
@@ -33,18 +34,17 @@ public class AiService {
         return restTemplate.postForObject(url, entity, QueryDTOOut.class);
     }
 
-    public QueryDTOOut recommendSkill(SkillRecommendDTOIn query) {
+    public JsonNode recommendSkill(SkillRecommendDTOIn query) {
         String url = pythonApiUrl + "/recommend-skills";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<SkillRecommendDTOIn> entity = new HttpEntity<>(query, headers);
-
-        return restTemplate.postForObject(url, entity, QueryDTOOut.class);
+        return restTemplate.postForObject(url, entity, JsonNode.class);
     }
 
-    public QueryDTOOut employeeMatch(EmployeeMatchDTOIn query) {
+    public JsonNode employeeMatch(EmployeeMatchDTOIn query) {
         String url = pythonApiUrl + "/match-employees";
 
         HttpHeaders headers = new HttpHeaders();
@@ -52,10 +52,10 @@ public class AiService {
 
         HttpEntity<EmployeeMatchDTOIn> entity = new HttpEntity<>(query, headers);
 
-        return restTemplate.postForObject(url, entity, QueryDTOOut.class);
+        return restTemplate.postForObject(url, entity, JsonNode.class);
     }
 
-    public QueryDTOOut recommendTraining(TrainRecommendDTOIn query) {
+    public JsonNode recommendTraining(TrainRecommendDTOIn query) {
         String url = pythonApiUrl + "/recommend-training";
 
         HttpHeaders headers = new HttpHeaders();
@@ -63,7 +63,7 @@ public class AiService {
 
         HttpEntity<TrainRecommendDTOIn> entity = new HttpEntity<>(query, headers);
 
-        return restTemplate.postForObject(url, entity, QueryDTOOut.class);
+        return restTemplate.postForObject(url, entity, JsonNode.class);
     }
 
     private String askChat(String prompt) {

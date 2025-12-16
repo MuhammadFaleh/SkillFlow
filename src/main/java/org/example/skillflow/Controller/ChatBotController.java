@@ -32,19 +32,16 @@ public class ChatBotController {
 
     @PostMapping("/recommend-skills")
     public ResponseEntity<?> recommendSkills(@RequestBody @Valid SkillRecommendDTOIn question) {
-        QueryDTOOut response = chatBotService.recommendSkill(question);
-        return ResponseEntity.status(200).body(response);
+        return ResponseEntity.status(200).body(chatBotService.recommendSkill(question));
     }
 
     @PostMapping("/recommend-training")
     public ResponseEntity<?> recommendTraining(@RequestBody @Valid TrainRecommendDTOIn question) {
-        QueryDTOOut response = chatBotService.recommendTraining(question);
-        return ResponseEntity.status(200).body(response);
+        return ResponseEntity.status(200).body(chatBotService.recommendTraining(question));
     }
 
     @PostMapping("/match-employee")
     public ResponseEntity<?> matchEmployee(@RequestBody @Valid EmployeeMatchDTOIn question) {
-        QueryDTOOut response = chatBotService.employeeMatch(question);
-        return ResponseEntity.status(200).body(response);
+        return ResponseEntity.status(200).body(chatBotService.employeeMatch(question));
     }
 }
