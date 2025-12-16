@@ -1,5 +1,5 @@
 import os
-import ChatBot.Constants as Constants
+import ChatBot.constants as constants
 from dotenv import load_dotenv
 import fitz  # PyMuPDF
 from langchain_core.documents import Document
@@ -13,18 +13,18 @@ if not load_dotenv():
     print("please check that env file exist and readable")
     exit(0)
 
-from ChatBot.Constants import CHROMA_SETTINGS
+from ChatBot.constants import CHROMA_SETTINGS
 import chromadb
 
 # environment variables
 load_dotenv()
-persist_directory = Constants.persist_directory
+persist_directory = constants.persist_directory
 persist_directory_pdf = os.path.join(persist_directory, "pdf_db")
 persist_directory_sql = os.path.join(persist_directory, "sql_db")
 
-embeddings_id = Constants.embeddings_id
-embeddings = Constants.embeddings
-MODEL = Constants.MODEL
+embeddings_id = constants.embeddings_id
+embeddings = constants.embeddings
+MODEL = constants.MODEL
 pdf_file_paths = os.getenv("pdf_PATH")
 
 
@@ -255,7 +255,7 @@ def load_sql_data():
 
 
 def split_documents(documents):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=Constants.chunk_size, chunk_overlap=Constants.chunk_overlap)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=constants.chunk_size, chunk_overlap=constants.chunk_overlap)
     return splitter.split_documents(documents)
 
 
