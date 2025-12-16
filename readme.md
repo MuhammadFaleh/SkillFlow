@@ -76,7 +76,7 @@ SkillFlow is a centralized backend system built on Java Spring Boot that address
 
 ### Technology Stack
 - Backend: Java Spring Boot
-- AI Integration: Python-based Chatbot API using FastAPI and Ollama
+- AI Integration: Python-based Chatbot API using FastAPI, Ollama and Langchain
 - Build Tool: Maven
 - Language Distribution: 89.3% Java, 10.7% Python
 
